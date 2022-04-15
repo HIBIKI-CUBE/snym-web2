@@ -3,7 +3,7 @@
 </script>
 
 <section class="frame {$$props.class} {$$props.liquid ? 'liquid' : ''}">
-  <div class="frame-content">
+  <div class="frame-content" style={$$props.style}>
     {#if title}
       <h3 class="title">{title}</h3>
       <div class="content">

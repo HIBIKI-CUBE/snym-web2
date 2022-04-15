@@ -34,7 +34,7 @@
       <h3>タイトル</h3>
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
       <div class="flex-container">
-        <Frame title="あらすじ" liquid>
+        <Frame title="あらすじ" liquid style="align-items:flex-start">
           <p>
             <Line
               string="— 宇宙 ステーション から 遭難信号 を 受信 した プレイヤー は 事故 の 調査 と 生存者 の 捜索 の ため 宇宙 ステーション へと 向かった。 施設 に 乗り込んだ プレイヤー は そこで、 人間 を 捕食 する 未確認 生命体 に 遭遇 する。 プレイヤー は 施設 の 謎 を 解き 明かし、 無事 に 脱出 する こと が できる のか —"
