@@ -28,7 +28,7 @@
     height: 2em
     width: 100%
     position: absolute
-    background-image: url(frame-corner.svg)
+    background-image: url(/frame-corner.svg)
     background-position: top left
     background-size: 100% 2em
     background-clip: border-box
