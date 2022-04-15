@@ -9,6 +9,7 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^3.4.1
+  pnpm: ^6.32.6
   prettier: ^2.6.2
   prettier-plugin-svelte: ^2.7.0
   stylus: ^0.54.8
@@ -21,6 +22,7 @@ specifiers:
 
 dependencies:
   '@splidejs/svelte-splide': 0.2.1
+  pnpm: 6.32.6
   stylus: 0.54.8
 
 devDependencies:
@@ -1328,6 +1330,12 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
+
+  /pnpm/6.32.6:
+    resolution: {integrity: sha512-ucrdCw3F/qjjzoR9+UtLXH1jkDqsbinz+hzSz54WQOOPt/F+9uxm8irrO/mdGkmsy844kAX6vsfS85gZLTg+yA==}
+    engines: {node: '>=12.17'}
+    hasBin: true
+    dev: false
 
   /postcss/8.4.12:
     resolution: {integrity: sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==}
