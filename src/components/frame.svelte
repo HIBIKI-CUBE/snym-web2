@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let title: string | null;
+  export let title: string = null;
 </script>
 
 <section class="frame {$$props.class} {$$props.liquid ? 'liquid' : ''}">
