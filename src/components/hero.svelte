@@ -185,6 +185,7 @@
     imageTypes={['webp', 'png']}
     sizes="70vw"
     srcName="paw_hero-transparent"
+    loadLazy={false}
   />
 </section>
 
