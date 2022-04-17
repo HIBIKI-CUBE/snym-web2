@@ -13,7 +13,7 @@
     imgId = null;
 
   function generateSrcset(imageType: String) {
-    return sizeSet.map((v) => `${directory}${srcName}-${v}w.${imageType}`).join(', ');
+    return sizeSet.map((v) => `${directory}${srcName}-${v}w.${imageType} ${v}w`).join(', ');
   }
 </script>
 
