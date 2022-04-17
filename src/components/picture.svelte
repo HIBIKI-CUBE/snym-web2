@@ -8,6 +8,7 @@
     fallbackSize = 1000,
     directory = '/',
     srcName = '',
+    loadLazy = true,
     imgClass = null,
     imgId = null;
 
@@ -25,5 +26,6 @@
     class={imgClass}
     src="{directory}{srcName}-{fallbackSize}w.{imageTypes.slice(-1)[0]}"
     {alt}
+    loading={loadLazy ? 'lazy' : 'eager'}
   />
 </picture>
