@@ -79,9 +79,6 @@
       <div class="switch_wrapper">
         <Switch />
       </div>
-      <div class="steam_wrapper">
-        <Steam />
-      </div>
       <Frame title="トレーラー映像">
         <Youtube id="WNIuShnZX8k" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
       </Frame>

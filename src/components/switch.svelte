@@ -103,7 +103,7 @@
     color #7f5
     @media (prefers-color-scheme: light)
       color #479932
-    font-size: 2vw
+    font-size: 2.5vw
     filter: drop-shadow(#244d1a 0 0 10px)
     margin: 2em 0
 
