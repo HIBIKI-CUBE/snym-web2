@@ -32,7 +32,7 @@
             imgClass="slide_img"
             alt="PREDATOR AND WRECK 捕食者と崩壊のスクリーンショット {img}"
             imageTypes={['webp', 'jpg']}
-            sizes="(orientation: portrait) 60vw, 85vw"
+            sizes="(orientation: portrait) 56vw, 81vw"
             {sizeSet}
             fallbackSize={1000}
             srcName="ss{img}"
