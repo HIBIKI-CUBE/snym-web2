@@ -73,6 +73,9 @@
           </table>
         </Frame>
       </div>
+      <div class="steam_wrapper">
+        <Steam />
+      </div>
       <div class="switch_wrapper">
         <Switch />
       </div>
