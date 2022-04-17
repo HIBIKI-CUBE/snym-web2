@@ -80,7 +80,7 @@
         <Switch />
       </div>
       <Frame title="トレーラー映像">
-        <Youtube id="WNIuShnZX8k" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
+        <Youtube id="pBmCvkxQT5U" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
       </Frame>
       <section>
         <h3>使用素材・環境</h3>
