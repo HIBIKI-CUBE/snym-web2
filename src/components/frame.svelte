@@ -18,8 +18,7 @@
 <style lang="stylus">
 .frame
   position: relative
-  margin-top: 4em
-  margin-bottom: 4em
+  margin: 4em 0 4em
   @media screen and (orientation: portrait)
     flex 0 0 100%
   &:before, &:after
