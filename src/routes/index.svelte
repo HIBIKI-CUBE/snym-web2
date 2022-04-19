@@ -36,7 +36,7 @@
       <h3>タイトル</h3>
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
       <div class="flex-container">
-        <Frame title="あらすじ" liquid style="align-items:flex-start">
+        <Frame title="あらすじ" liquid style="align-items:flex-start" id="story">
           <p>
             <Line
               string="宇宙 ステーション から 遭難信号 を 受信し、 爆発事故 の 調査 と 生存者 の 捜索 に 向かったが、 そこで 人間 を 捕食 する 未確認生物 に 遭遇 して しまう。"
@@ -48,7 +48,7 @@
             />
           </p>
         </Frame>
-        <Frame title="ゲーム情報">
+        <Frame title="ゲーム情報" id="game_info">
           <table class="content">
             <tr>
               <td>ジャンル</td>
@@ -81,7 +81,7 @@
       <div class="switch_wrapper">
         <Switch />
       </div>
-      <Frame title="トレーラー映像">
+      <Frame title="トレーラー映像" id="trailer">
         <Youtube id="pBmCvkxQT5U" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
       </Frame>
       <section>

@@ -82,8 +82,8 @@
     <label for="button_checkbox" class="list_items title">
       <h3 class="title"><span class="break-scope">ナビゲーション</span>を閉じる</h3>
     </label>
-    <div class="list_items" data-target="info">ゲーム情報</div>
     <div class="list_items" data-target="story">あらすじ</div>
+    <div class="list_items" data-target="game_info">ゲーム情報</div>
     <div class="list_items" data-target="trailer">トレーラー</div>
     <div class="list_items" data-target="team">Snymとは</div>
     <div class="list_items" data-target="member">メンバー</div>
@@ -205,44 +205,6 @@ nav
   animation-timing-function ease-out
   animation-fill-mode both
 
-  .list_items
-    display block
-    width 100%
-    background-color var(--ui-over-bg)
-    @media screen and (orientation: portrait)
-      flex 0 0 50vw
-      &:last-child
-        flex 0 0 100vw
-    height var(--base-size)
-    line-height var(--base-size)
-    margin 0
-    padding 0
-    border none
-    text-align center
-    color var(--ui-text-color)
-
-    &:last-child
-      padding-right env(safe-area-inset-right)
-
-    &:hover
-      @media screen and (orientation: landscape)
-        background-color var(--ui-over-bg-hover)
-
-    &+&:before
-      @media screen and (orientation: landscape)
-        content ''
-        position absolute
-        width 1px
-        top calc(var(--base-size) * 0.1)
-        transform translate(-0.5px, 0)
-        height calc(var(--base-size) * 0.8)
-        display block
-        background-color var(--ui-text-color)
-
-    @media screen and (orientation: portrait)
-      &+&:nth-child(2):before
-        content none
-
   .title
     margin 0
     line-height calc(var(--base-size) / 2)
@@ -250,6 +212,45 @@ nav
     @media screen and (orientation: portrait)
       flex 0 0 100vw
       line-height var(--base-size)
+
+
+.list_items
+  display block
+  width 100%
+  background-color var(--ui-over-bg)
+  @media screen and (orientation: portrait)
+    flex 0 0 50vw
+    &:last-child
+      flex 0 0 100vw
+  height var(--base-size)
+  line-height var(--base-size)
+  margin 0
+  padding 0
+  border none
+  text-align center
+  color var(--ui-text-color)
+
+  &:last-child
+    padding-right env(safe-area-inset-right)
+
+  &:hover
+    @media screen and (orientation: landscape)
+      background-color var(--ui-over-bg-hover)
+
+  &+&:before
+    @media screen and (orientation: landscape)
+      content ''
+      position absolute
+      width 1px
+      top calc(var(--base-size) * 0.1)
+      transform translate(-0.5px, 0)
+      height calc(var(--base-size) * 0.8)
+      display block
+      background-color var(--ui-text-color)
+
+  @media screen and (orientation: portrait)
+    &+&:nth-child(2):before
+      content none
 
 #button_checkbox:checked ~ nav
   animation-name expand_navigation
