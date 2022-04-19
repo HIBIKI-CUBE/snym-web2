@@ -222,288 +222,40 @@
       <h2 class="main_member_title" id="member">制作者一覧</h2>
       <section>
         <h3>Snym</h3>
-        <ul class="flex-container main_member_list">
+        <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/53kcal4"
-              data-twitter="53kcal4"
-              class="main_member_id flex-container"
-            >
-              <Picture
-                class="main_member_avatar_parent"
-                imgClass="main_member_avatar"
-                alt="SnymのメンバーのSHOYUの画像"
-                imageTypes={['webp', 'jpg']}
-                sizes="(max-width: 600px) 15vw, 0.5vw"
-                sizeSet={memberIconSizeSet}
-                fallbackSize={memberIconSizeSet[0]}
-                srcName="shoyu"
-              />
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">SHOYU</h4>
-                <div class="main_member_post">
-                  <Line string="チームリーダー ・ ディレクター ・ プログラマー" />
-                </div>
-              </div>
-            </a>
+            <Member name="SHOYU" id="shoyu" post="チームリーダー ・ ディレクター ・ プログラマー" twitter="53kcal4"/>
           </li>
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/neo_97m"
-              data-twitter="neo_97m"
-              class="main_member_id flex-container"
-            >
-              <picture class="main_member_avatar_parent">
-                <source
-                  type="image/webp"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/neo-400w.webp 400w, /img/neo-350w.webp 350w, /img/neo-300w.webp 300w, /img/neo-250w.webp 250w, /img/neo-200w.webp 200w, /img/neo-150w.webp 150w, /img/neo-100w.webp 100w, /img/neo-50w.webp 50w"
-                />
-                <source
-                  type="image/jpg"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/neo-400w.jpg 400w, /img/neo-350w.jpg 350w, /img/neo-300w.jpg 300w, /img/neo-250w.jpg 250w, /img/neo-200w.jpg 200w, /img/neo-150w.jpg 150w, /img/neo-100w.jpg 100w, /img/neo-50w.jpg 50w"
-                />
-                <img
-                  class="main_member_avatar"
-                  src="/img/neo-400w.jpg"
-                  alt="SnymのメンバーのNEOの画像"
-                />
-              </picture>
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">NEO</h4>
-                <div class="main_member_post">
-                  <span class="break-scope">マップ設計</span>・<span class="break-scope"
-                    >サウンドクリエイター</span
-                  >
-                </div>
-              </div>
-            </a>
+            <Member name="NEO" id="neo" post="マップ設計・サウンドクリエイター" twitter="neo_97m"/>
           </li>
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/GoodPaddyField7"
-              data-twitter="GoodPaddyField7"
-              class="main_member_id flex-container"
-            >
-              <picture class="main_member_avatar_parent">
-                <source
-                  type="image/webp"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/iida-400w.webp 400w, /img/iida-350w.webp 350w, /img/iida-300w.webp 300w, /img/iida-250w.webp 250w, /img/iida-200w.webp 200w, /img/iida-150w.webp 150w, /img/iida-100w.webp 100w, /img/iida-50w.webp 50w"
-                />
-                <source
-                  type="image/jpg"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/iida-400w.jpg 400w, /img/iida-350w.jpg 350w, /img/iida-300w.jpg 300w, /img/iida-250w.jpg 250w, /img/iida-200w.jpg 200w, /img/iida-150w.jpg 150w, /img/iida-100w.jpg 100w, /img/iida-50w.jpg 50w"
-                />
-                <img
-                  class="main_member_avatar"
-                  src="/img/iida-400w.jpg"
-                  alt="SnymのメンバーのI_Dの画像"
-                />
-              </picture>
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">I_D</h4>
-                <div class="main_member_post">
-                  <span class="break-scope">プログラマー</span>・<span class="break-scope"
-                    >テクニカルディレクター</span
-                  >
-                </div>
-              </div>
-            </a>
+            <Member name="I_D" id="iida" post="プログラマー・テクニカルディレクター" twitter="GoodPaddyField7"/>
           </li>
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/OKNO38934114"
-              data-twitter="OKNO38934114"
-              class="main_member_id flex-container"
-            >
-              <picture class="main_member_avatar_parent">
-                <source
-                  type="image/webp"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/okno-400w.webp 400w, /img/okno-350w.webp 350w, /img/okno-300w.webp 300w, /img/okno-250w.webp 250w, /img/okno-200w.webp 200w, /img/okno-150w.webp 150w, /img/okno-100w.webp 100w, /img/okno-50w.webp 50w"
-                />
-                <source
-                  type="image/jpg"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/okno-400w.jpg 400w, /img/okno-350w.jpg 350w, /img/okno-300w.jpg 300w, /img/okno-250w.jpg 250w, /img/okno-200w.jpg 200w, /img/okno-150w.jpg 150w, /img/okno-100w.jpg 100w, /img/okno-50w.jpg 50w"
-                />
-                <img
-                  class="main_member_avatar"
-                  src="/img/okno-400w.jpg"
-                  alt="SnymのメンバーのOK_NOの画像"
-                />
-              </picture>
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">OK_NO</h4>
-                <div class="main_member_post">
-                  <span class="break-scope">ギミックプログラマー</span>・<span class="break-scope"
-                    >デバッガー</span
-                  >
-                </div>
-              </div>
-            </a>
+            <Member name="OK_NO" id="okno" post="ギミックプログラマー・デバッガー" twitter="OKNO38934114"/>
           </li>
         </ul>
         <h3>制作協力</h3>
-        <ul class="flex-container main_member_list">
-          <li class="flex_half-on_pc flex-container main_member_id">
-            <picture class="main_member_avatar_parent">
-              <source
-                type="image/webp"
-                sizes="(max-width: 600px) 15vw, 5vw"
-                srcset="/img/team_logo-1500w.webp 1500w, /img/team_logo-1250w.webp 1250w, /img/team_logo-1000w.webp 1000w, /img/team_logo-750w.webp 750w, /img/team_logo-500w.webp 500w, /img/team_logo-250w.webp 250w, /img/team_logo-200w.webp 200w, /img/team_logo-150w.webp 150w, /img/team_logo-100w.webp 100w, /img/team_logo-50w.webp 50w"
-              />
-              <source
-                type="image/png"
-                sizes="(max-width: 600px) 15vw, 5vw"
-                srcset="/img/team_logo-1500w.png 1500w, /img/team_logo-1250w.png 1250w, /img/team_logo-1000w.png 1000w, /img/team_logo-750w.png 750w, /img/team_logo-500w.png 500w, /img/team_logo-250w.png 250w, /img/team_logo-200w.png 200w, /img/team_logo-150w.png 150w, /img/team_logo-100w.png 100w, /img/team_logo-50w.png 50w"
-              />
-              <img
-                class="main_member_avatar temporary"
-                src="/img/team_logo-500w.png"
-                alt="SnymのサブメンバーのNAMIの仮画像"
-              />
-            </picture>
-            <div class="main_member_id_layout">
-              <h4 class="main_member_name">NAMI</h4>
-              <div class="main_member_post">デバッガー</div>
-            </div>
+        <ul class="flex-container members">
+          <li class="flex_half-on_pc">
+            <Member name="NAMI" post="デバッガー"/>
           </li>
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/Amu_dsgn"
-              data-twitter="Amu_dsgn"
-              class="main_member_id flex-container"
-            >
-              <picture class="main_member_avatar_parent">
-                <source
-                  type="image/webp"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/ayumu-24w.webp 24w, /img/ayumu-48w.webp 48w, /img/ayumu-72w.webp 72w"
-                />
-                <source
-                  type="image/png"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/ayumu-24w.png 24w, /img/ayumu-48w.png 48w, /img/ayumu-72w.png 72w"
-                />
-                <img
-                  class="main_member_avatar"
-                  src="/img/ayumu-48w.png"
-                  alt="SnymのサブメンバーのAMUの画像"
-                />
-              </picture>
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">AMU</h4>
-                <div class="main_member_post">デザイナー</div>
-              </div>
-            </a>
+            <Member name="AMU" id="ayumu" post="デザイナー" twitter="Amu_dsgn" sizeSet={[24, 48, 72]}/>
           </li>
           <li class="flex_half-on_pc flex-container main_member_id">
-            <picture class="main_member_avatar_parent">
-              <source
-                type="image/webp"
-                sizes="(max-width: 600px) 15vw, 5vw"
-                srcset="/img/team_logo-1500w.webp 1500w, /img/team_logo-1250w.webp 1250w, /img/team_logo-1000w.webp 1000w, /img/team_logo-750w.webp 750w, /img/team_logo-500w.webp 500w, /img/team_logo-250w.webp 250w, /img/team_logo-200w.webp 200w, /img/team_logo-150w.webp 150w, /img/team_logo-100w.webp 100w, /img/team_logo-50w.webp 50w"
-              />
-              <source
-                type="image/png"
-                sizes="(max-width: 600px) 15vw, 5vw"
-                srcset="/img/team_logo-1500w.png 1500w, /img/team_logo-1250w.png 1250w, /img/team_logo-1000w.png 1000w, /img/team_logo-750w.png 750w, /img/team_logo-500w.png 500w, /img/team_logo-250w.png 250w, /img/team_logo-200w.png 200w, /img/team_logo-150w.png 150w, /img/team_logo-100w.png 100w, /img/team_logo-50w.png 50w"
-              />
-              <img
-                class="main_member_avatar temporary"
-                src="/img/team_logo-500w.png"
-                alt="SnymのサブメンバーのSIHYUNの仮画像"
-              />
-            </picture>
-            <div class="main_member_id_layout">
-              <h4 class="main_member_name">SIHYUN</h4>
-              <div class="main_member_post">サウンドクリエイター</div>
-            </div>
+            <Member name="SIHYUN" post="サウンドクリエイター"/>
           </li>
           <li class="flex_half-on_pc">
-            <a
-              href="https://twitter.com/hibiki_cube"
-              data-twitter="hibiki_cube"
-              class="main_member_id flex-container"
-            >
-              <picture class="main_member_avatar_parent">
-                <source
-                  type="image/webp"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/hibiki_cube-400w.webp 400w, /img/hibiki_cube-350w.webp 350w, /img/hibiki_cube-300w.webp 300w, /img/hibiki_cube-250w.webp 250w, /img/hibiki_cube-200w.webp 200w, /img/hibiki_cube-150w.webp 150w, /img/hibiki_cube-100w.webp 100w, /img/hibiki_cube-50w.webp 50w"
-                />
-                <source
-                  type="image/jpg"
-                  sizes="(max-width: 600px) 15vw, 5vw"
-                  srcset="/img/hibiki_cube-400w.jpg 400w, /img/hibiki_cube-350w.jpg 350w, /img/hibiki_cube-300w.jpg 300w, /img/hibiki_cube-250w.jpg 250w, /img/hibiki_cube-200w.jpg 200w, /img/hibiki_cube-150w.jpg 150w, /img/hibiki_cube-100w.jpg 100w, /img/hibiki_cube-50w.jpg 50w"
-                />
-                <img
-                  class="main_member_avatar"
-                  src="/img/hibiki_cube-400w.jpg"
-                  alt="SnymのサブメンバーのHIBIKI CUBEの画像"
-                />
-              </picture>
-              <div class="main_member_id_layout">
-                <h4 class="main_member_name">HIBIKI CUBE</h4>
-                <div class="main_member_post">Webクリエイター</div>
-              </div>
-            </a>
+            <Member name="HIBIKI CUBE" id="hibiki_cube" post="Webクリエイター ・ アセットクリエイター" twitter="hibiki_cube"/>
           </li>
         </ul>
       </section>
     </article>
   </section>
 </main>
-<footer>
-  <section class="footer_copyright">
-    <div>&copy; 2021 <span class="break-scope">HIBIKI CUBE,</span> Snym</div>
-  </section>
-  <section class="footer_license">
-    <div>
-      The source code of this web site is licensed under a Mozilla Public License Version 2.0 and
-      available at <a href="https://github.com/HIBIKI-CUBE/snym-web">Github</a>.
-    </div>
-  </section>
-  <section class="footer_license">
-    <div>
-      このWebサイトのソースコードはMozilla Public License Version
-      2.0ライセンスの下で提供されており、<a href="https://github.com/HIBIKI-CUBE/snym-web">Github</a
-      >から入手して利用できます。
-    </div>
-  </section>
-  <section class="footer_creative-commons">
-    <div>
-      <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
-        ><img
-          alt="Creative Commons License"
-          style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;"
-          src="https://i.creativecommons.org/l/by-nd/4.0/80x15.png"
-        /></a
-      >All non-source code resources such as images and videos are licensed under a
-      <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"
-        >Creative Commons Attribution-NoDerivatives 4.0 International License</a
-      >.
-    </div>
-  </section>
-  <section class="footer_creative-commons">
-    <div>
-      <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja"
-        ><img
-          alt="クリエイティブ・コモンズ・ライセンス"
-          style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;"
-          src="https://i.creativecommons.org/l/by-nd/4.0/80x15.png"
-        /></a
-      >全てのソースコード以外の画像や動画などのリソースは
-      <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja"
-        >クリエイティブ・コモンズ 表示 - 改変禁止 4.0 国際 ライセンス</a
-      >の下に提供されています。
-    </div>
-  </section>
-</footer>
+<Footer />
 
 <style lang="stylus">
   :root
@@ -606,4 +358,7 @@
   .switch_wrapper
     position: relative
     left: calc((100vw - var(--article-width)) / 2 * -1)
+
+  .members
+    flex-direction row
 </style>
