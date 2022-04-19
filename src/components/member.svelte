@@ -52,7 +52,7 @@
   padding-right 3em
 
   &:not([href=""]):after
-    content url('twitter.svg')
+    content url('/twitter.svg')
     display block
     position absolute
     right 0.1em
