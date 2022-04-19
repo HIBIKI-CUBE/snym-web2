@@ -7,6 +7,7 @@
   import Youtube from '../components/youtube-iframe.svelte';
   import Switch from '../components/switch.svelte';
   import Steam from '../components/steam.svelte';
+  import Footer from '../components/footer.svelte';
 
   const memberIconSizeSet = [400, 350, 300, 250, 200, 150, 100, 50];
 </script>
