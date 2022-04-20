@@ -2,7 +2,7 @@
   export let title: string = null;
 </script>
 
-<section class="frame {$$props.class} {$$props.liquid ? 'liquid' : ''}">
+<section class="frame {$$props.class || ""} {$$props.liquid ? 'liquid' : ''} {$$props.rigid ? 'rigid' : ''}" id={$$props.id}>
   <div class="frame-content" style={$$props.style}>
     {#if title}
       <h3 class="title">{title}</h3>
@@ -19,7 +19,9 @@
 .frame
   position: relative
   margin: 4em 0 4em
-  @media screen and (orientation: portrait)
+  &:not(.rigid)
+    width: 100%
+  @media screen and (max-aspect-ratio: 9/8)
     flex 0 0 100%
   &:before, &:after
     content ''
@@ -42,9 +44,10 @@
   &:after
     bottom: -2em
 
-  &.liquid
-    flex 1
-    margin-right calc(var(--article-width) * 0.05)
+  @media screen and (min-aspect-ratio: 9/8)
+    &.liquid
+      flex 1
+      margin-right calc(var(--article-width) * 0.05)
 
   .frame-content
     margin: auto

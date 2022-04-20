@@ -48,7 +48,7 @@
             />
           </p>
         </Frame>
-        <Frame title="ゲーム情報" id="game_info">
+        <Frame title="ゲーム情報" rigid id="game_info">
           <table class="content">
             <tr>
               <td>ジャンル</td>
@@ -122,7 +122,7 @@
       <section>
         <h3 id="team">チームSnym（スナイム）とは</h3>
         <div class="flex-container">
-          <Frame title="概要" class="flex_half-on_pc">
+          <Frame title="概要">
             <p>
               2019年8月に当時東京電機大学の1年生4人により発足。
               メインメンバー4人＋サブメンバー4人で構成された学生によるゲーム制作チームです。また、各メンバーは個々のフィールドでも精力的に活動していますので、興味のある方は下記の<a
@@ -131,7 +131,7 @@
               >より足をお運びください。
             </p>
           </Frame>
-          <Frame title="来歴" class="flex_half-on_pc">
+          <Frame title="来歴">
             <table>
               <tr>
                 <td><time datetime="2019-08">2019年8月</time></td>
