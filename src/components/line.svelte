@@ -6,7 +6,7 @@
 
   function processMd(input: string) {
     let result: string[] = [input];
-    if(!input.match(/\[.+?\]\(.+?\)/g)){
+    if (!input.match(/\[.+?\]\(.+?\)/g)) {
       return result;
     }
     input.match(/\[.+?\]\(.+?\)/g).forEach((v) => {
@@ -31,11 +31,19 @@
       <div>
         {#each processMd(line) as rawChunk}
           {#if rawChunk.match(/\[.+?\]\(.+?\)/)}
-            <a href={rawChunk.match(/\((.*?)\)/)[1]}>
-              {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
-                <span class="chunk {noLine && 'noLine'}">{chunk}</span>
-              {/each}
-            </a>
+            {#if rawChunk.match(/\((#.+?)\)/)}
+              <a href=".#" data-target={rawChunk.match(/\((#.+?)\)/)[1]}>
+                {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
+                  <span class="chunk {noLine && 'noLine'}">{chunk}</span>
+                {/each}
+              </a>
+            {:else}
+              <a href={rawChunk.match(/\((.+?)\)/)[1]}>
+                {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
+                  <span class="chunk {noLine && 'noLine'}">{chunk}</span>
+                {/each}
+              </a>
+            {/if}
           {:else}
             {#each splitDualSpace(rawChunk) as chunk}
               <span class="chunk {noLine && 'noLine'}">{chunk}</span>
@@ -47,11 +55,19 @@
   {:else}
     {#each processMd(content) as rawChunk}
       {#if rawChunk.match(/\[.+?\]\(.+?\)/)}
-        <a href={rawChunk.match(/\((.*?)\)/)[1]}>
-          {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
-            <span class="chunk {noLine && 'noLine'}">{chunk}</span>
-          {/each}
-        </a>
+        {#if rawChunk.match(/\((#.+?)\)/)}
+          <a href=".#" data-target={rawChunk.match(/\((#.+?)\)/)[1]}>
+            {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
+              <span class="chunk {noLine && 'noLine'}">{chunk}</span>
+            {/each}
+          </a>
+        {:else}
+          <a href={rawChunk.match(/\((.+?)\)/)[1]}>
+            {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
+              <span class="chunk {noLine && 'noLine'}">{chunk}</span>
+            {/each}
+          </a>
+        {/if}
       {:else}
         {#each splitDualSpace(rawChunk) as chunk}
           <span class="chunk {noLine && 'noLine'}">{chunk}</span>
