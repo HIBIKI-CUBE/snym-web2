@@ -19,9 +19,9 @@
 
   function splitDualSpace(input: string) {
     return input
-      .replaceAll('  ', '\t ')
+      .replace(/\ \ /g, '\t ')
       .split(' ')
-      .map((v) => v.replaceAll('\t', ' '));
+      .map((v) => v.replace(/\t/g, ' '));
   }
 </script>
 
