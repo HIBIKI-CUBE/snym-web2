@@ -2,16 +2,22 @@
   export let title: string = null;
 </script>
 
-<section class="frame {$$props.class || ""} {$$props.liquid ? 'liquid' : ''} {$$props.rigid ? 'rigid' : ''}" id={$$props.id}>
+<section
+  class="
+    frame
+    {$$props.class || ''}
+    {$$props.liquid ? 'liquid' : ''}
+    {$$props.rigid ? 'rigid' : ''}
+  "
+  id={$$props.id}
+>
   <div class="frame-content" style={$$props.style}>
     {#if title}
       <h3 class="title">{title}</h3>
-      <div class="content">
-        <slot />
-      </div>
-    {:else}
-      <slot />
     {/if}
+    <div class="content {$$props.flex ? 'flex' : ''}">
+      <slot />
+    </div>
   </div>
 </section>
 
@@ -64,11 +70,12 @@
       display: flex
       align-items: center
     .content
-      display: flex
-      flex-flow: column
-      justify-content: center
-      align-items: center
       padding:0 2ch
+      &.flex
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
     :global(p)
       margin 0
 </style>

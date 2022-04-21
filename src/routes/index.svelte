@@ -48,7 +48,7 @@
             />
           </p>
         </Frame>
-        <Frame title="ゲーム情報" rigid id="game_info">
+        <Frame title="ゲーム情報" rigid flex id="game_info">
           <table class="content">
             <tr>
               <td>ジャンル</td>
@@ -81,7 +81,7 @@
       <div class="switch_wrapper">
         <Switch />
       </div>
-      <Frame title="トレーラー映像" id="trailer">
+      <Frame title="トレーラー映像" flex id="trailer">
         <Youtube id="pBmCvkxQT5U" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
       </Frame>
       <section>
@@ -135,7 +135,7 @@
               >より足をお運びください。
             </p>
           </Frame>
-          <Frame title="来歴">
+          <Frame title="来歴" flex>
             <table>
               <tr>
                 <td><time datetime="2019-08">2019年8月</time></td>
@@ -365,4 +365,8 @@
 
   .members
     flex-direction row
+  
+  summary
+    h3
+      display: inline
 </style>
