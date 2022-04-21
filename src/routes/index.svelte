@@ -7,10 +7,9 @@
   import Youtube from '../components/youtube-iframe.svelte';
   import Switch from '../components/switch.svelte';
   import Steam from '../components/steam.svelte';
+  import Info from '../components/info.svelte';
   import Footer from '../components/footer.svelte';
   import Member from '../components/member.svelte';
-
-  const memberIconSizeSet = [400, 350, 300, 250, 200, 150, 100, 50];
 </script>
 
 <svelte:head>
@@ -35,6 +34,7 @@
     <article>
       <h3>タイトル</h3>
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
+      <Info />
       <div class="flex-container">
         <Frame title="あらすじ" liquid style="align-items:flex-start" id="story">
           <p>
@@ -87,40 +87,40 @@
       <section>
         <details>
           <summary>
-        <h3>使用素材・環境</h3>
+            <h3>使用素材・環境</h3>
           </summary>
-        <div class="flex-container">
-          <div class="flex_half-on_pc">
-            <h4>環境</h4>
-            <ul>
-              <li>Unity 2019.1.14f1</li>
-              <li>GitHub</li>
-              <li>Source Tree</li>
-            </ul>
+          <div class="flex-container">
+            <div class="flex_half-on_pc">
+              <h4>環境</h4>
+              <ul>
+                <li>Unity 2019.1.14f1</li>
+                <li>GitHub</li>
+                <li>Source Tree</li>
+              </ul>
+            </div>
+            <div class="flex_half-on_pc">
+              <h4>Unityアセット</h4>
+              <ul>
+                <li>True Horror - Crawler</li>
+                <li>Sci-Fi Facility</li>
+                <li>Monster Pack 2</li>
+                <li>DOTweenPro</li>
+                <li>SpaceCraft 0</li>
+                <li>TextMesh Pro</li>
+                <li>ATM</li>
+              </ul>
+              <h4>その他素材</h4>
+              <ul>
+                <li>icooon7admin</li>
+                <li>
+                  <a href="http://www.shaderslab.com/demo-19---outline-3d-model.html"
+                    >Outlines a 3D model with 2 passes.</a
+                  >
+                </li>
+                <li>稿屋 隆 「泥沼を歩く」</li>
+              </ul>
+            </div>
           </div>
-          <div class="flex_half-on_pc">
-            <h4>Unityアセット</h4>
-            <ul>
-              <li>True Horror - Crawler</li>
-              <li>Sci-Fi Facility</li>
-              <li>Monster Pack 2</li>
-              <li>DOTweenPro</li>
-              <li>SpaceCraft 0</li>
-              <li>TextMesh Pro</li>
-              <li>ATM</li>
-            </ul>
-            <h4>その他素材</h4>
-            <ul>
-              <li>icooon7admin</li>
-              <li>
-                <a href="http://www.shaderslab.com/demo-19---outline-3d-model.html"
-                  >Outlines a 3D model with 2 passes.</a
-                >
-              </li>
-              <li>稿屋 隆 「泥沼を歩く」</li>
-            </ul>
-          </div>
-        </div>
         </details>
       </section>
       <section>
@@ -228,31 +228,57 @@
         <h3>Snym</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member name="SHOYU" id="shoyu" post="チームリーダー ・ ディレクター ・ プログラマー" twitter="53kcal4"/>
+            <Member
+              name="SHOYU"
+              id="shoyu"
+              post="チームリーダー ・ ディレクター ・ プログラマー"
+              twitter="53kcal4"
+            />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="NEO" id="neo" post="マップ設計・サウンドクリエイター" twitter="neo_97m"/>
+            <Member name="NEO" id="neo" post="マップ設計・サウンドクリエイター" twitter="neo_97m" />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="I_D" id="iida" post="プログラマー・テクニカルディレクター" twitter="GoodPaddyField7"/>
+            <Member
+              name="I_D"
+              id="iida"
+              post="プログラマー・テクニカルディレクター"
+              twitter="GoodPaddyField7"
+            />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="OK_NO" id="okno" post="ギミックプログラマー・デバッガー" twitter="OKNO38934114"/>
+            <Member
+              name="OK_NO"
+              id="okno"
+              post="ギミックプログラマー・デバッガー"
+              twitter="OKNO38934114"
+            />
           </li>
         </ul>
         <h3>制作協力</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member name="NAMI" post="デバッガー"/>
+            <Member name="NAMI" post="デバッガー" />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="AMU" id="ayumu" post="デザイナー" twitter="Amu_dsgn" sizeSet={[24, 48, 72]}/>
+            <Member
+              name="AMU"
+              id="ayumu"
+              post="デザイナー"
+              twitter="Amu_dsgn"
+              sizeSet={[24, 48, 72]}
+            />
           </li>
           <li class="flex_half-on_pc flex-container main_member_id">
-            <Member name="SIHYUN" post="サウンドクリエイター"/>
+            <Member name="SIHYUN" post="サウンドクリエイター" />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="HIBIKI CUBE" id="hibiki_cube" post="Webクリエイター ・ アセットクリエイター" twitter="hibiki_cube"/>
+            <Member
+              name="HIBIKI CUBE"
+              id="hibiki_cube"
+              post="Webクリエイター ・ アセットクリエイター"
+              twitter="hibiki_cube"
+            />
           </li>
         </ul>
       </section>
@@ -303,7 +329,7 @@
   :global(.flex_half-on_pc)
     flex 0 0 47.5%
 
-    @media screen and (max-width: 180ch)
+    @media screen and (max-aspect-ratio: 9/8)
       flex 0 0 100%
 
   :global(.flex_half)
@@ -314,7 +340,7 @@
   //   margin-right calc(var(--article-width) * 0.05)
 
   :global(.pc-hide)
-    @media screen and (max-width: 180ch)
+    @media screen and (max-aspect-ratio: 9/8)
       display none
 
   :global(a)
