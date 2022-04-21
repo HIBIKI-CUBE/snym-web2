@@ -9,7 +9,6 @@
     sizeSet:number[] = [];
   
   let fallbackSize: number;
-  console.log(sizeSet, name);
 
   if (id) {
     if (sizeSet.length == 0) {
@@ -34,7 +33,7 @@
   <div class="layout">
     <h4 class="name">{name}</h4>
     <div class="post">
-      <Line string={post} />
+      <Line content={post} noLine/>
     </div>
   </div>
 </a>
