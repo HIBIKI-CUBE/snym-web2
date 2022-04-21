@@ -7,9 +7,10 @@
   import Youtube from '../components/youtube-iframe.svelte';
   import Switch from '../components/switch.svelte';
   import Steam from '../components/steam.svelte';
-  import Info from '../components/info.svelte';
   import Footer from '../components/footer.svelte';
   import Member from '../components/member.svelte';
+
+  const contents = (async () => (await fetch('/contents')).json())();
 </script>
 
 <svelte:head>
@@ -34,19 +35,23 @@
     <article>
       <h3>タイトル</h3>
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
-      <Info />
+
+      <Frame title="お知らせ">
+        <p>
+          {#await contents then content}
+            <Line content={content.info} mdMode />
+          {/await}
+        </p>
+      </Frame>
       <div class="flex-container">
-        <Frame title="あらすじ" liquid style="align-items:flex-start" id="story">
-          <p>
-            <Line
-              content="宇宙 ステーション から 遭難信号 を 受信し、 爆発事故 の 調査 と 生存者 の 捜索 に 向かったが、 そこで 人間 を 捕食 する 未確認生物 に 遭遇 して しまう。"
-            />
-          </p>
-          <p>
-            <Line
-              content="未確認生物 の 謎 を 解き明かし、 無事 に 脱出 する こと が できる のか。"
-            />
-          </p>
+        <Frame title="あらすじ" liquid id="story">
+          {#await contents then content}
+            {#each content.story.split('\n') as line}
+              <p>
+                <Line content={line} mdMode />
+              </p>
+            {/each}
+          {/await}
         </Frame>
         <Frame title="ゲーム情報" rigid flex id="game_info">
           <table class="content">
@@ -82,7 +87,12 @@
         <Switch />
       </div>
       <Frame title="トレーラー映像" flex id="trailer">
-        <Youtube id="pBmCvkxQT5U" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
+        {#await contents then content}
+          <Youtube
+            id={content.youtubeID}
+            title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み"
+          />
+        {/await}
       </Frame>
       <section>
         <details>
@@ -127,13 +137,13 @@
         <h3 id="team">チームSnym（スナイム）とは</h3>
         <div class="flex-container">
           <Frame title="概要">
-            <p>
-              2019年8月に当時東京電機大学の1年生4人により発足。
-              メインメンバー4人＋サブメンバー4人で構成された学生によるゲーム制作チームです。また、各メンバーは個々のフィールドでも精力的に活動していますので、興味のある方は下記の<a
-                href="return;"
-                data-target="member">メンバー紹介</a
-              >より足をお運びください。
-            </p>
+            {#await contents then content}
+              {#each content.outline.split('\n') as line}
+                <p>
+                  <Line content={line} mdMode />
+                </p>
+              {/each}
+            {/await}
           </Frame>
           <Frame title="来歴" flex>
             <table>
@@ -209,15 +219,13 @@
         </div>
       </section>
       <Frame title="連絡先">
-        <p>
-          ご意見、ご感想はTwitterチームアカウント<a href="https://twitter.com/Snym_Games"
-            >@Snym_Games</a
-          >、またはGmailへお願いします。チームSnym公式ツイッターでは日々の活動やゲームの制作状況をつぶやいているのでよろしければTwitterのフォローをお願いします。
-        </p>
-        <ul>
-          <li>Twitter: <a href="https://twitter.com/Snym_Games">@Snym_Games</a></li>
-          <li>Gmail: snymgamescontact@gmail.com</li>
-        </ul>
+        {#await contents then content}
+          {#each content.contact.split('\n') as line}
+            <p>
+              <Line content={line} mdMode />
+            </p>
+          {/each}
+        {/await}
       </Frame>
     </article>
   </section>
