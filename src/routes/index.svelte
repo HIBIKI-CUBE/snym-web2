@@ -85,7 +85,10 @@
         <Youtube id="pBmCvkxQT5U" title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み" />
       </Frame>
       <section>
+        <details>
+          <summary>
         <h3>使用素材・環境</h3>
+          </summary>
         <div class="flex-container">
           <div class="flex_half-on_pc">
             <h4>環境</h4>
@@ -118,6 +121,7 @@
             </ul>
           </div>
         </div>
+        </details>
       </section>
       <section>
         <h3 id="team">チームSnym（スナイム）とは</h3>
