@@ -1,3 +1,17 @@
+<script lang="ts" context="module">
+  /** @type {import('index.svelte').Load} */
+  export async function load({ fetch }) {
+    const response = await fetch('/contents');
+
+    return {
+      status: response.status,
+      props: {
+        contents: response.ok && (await response.json())
+      }
+    };
+  }
+</script>
+
 <script lang="ts">
   import Line from '../components/line.svelte';
   import Frame from '../components/frame.svelte';
@@ -9,7 +23,7 @@
   import Footer from '../components/footer.svelte';
   import Member from '../components/member.svelte';
 
-  const contents = (async () => (await fetch('/contents')).json())();
+  export let contents;
 </script>
 
 <svelte:head>
