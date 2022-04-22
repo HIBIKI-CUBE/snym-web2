@@ -14,6 +14,11 @@
 </script>
 
 <svelte:head>
+  <meta
+    name="description"
+    content="SFホラーゲーム、PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの公式Webサイト。東京電機大学の学生チームSnym(スナイム)が開発。Nintendo Switchにて9/16より販売開始"
+  />
+  <title>PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レック : Snym</title>
   <style>
     html,
     body {
@@ -35,7 +40,6 @@
     <article>
       <h3>タイトル</h3>
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
-
       <Frame title="お知らせ">
         <p>
           {#await contents then content}
