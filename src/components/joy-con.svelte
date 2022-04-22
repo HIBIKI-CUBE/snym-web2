@@ -18,10 +18,8 @@
     swap = false;
   function newColor() {
     swap = true;
-    console.log('swap');
     setTimeout(() => {
       swap = false;
-      console.log("finish");
     }, 500);
     colorOld = color;
     color = colors[Math.floor(Math.random() * colors.length)];
