@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import Picture from '../components/picture.svelte';
 
   import JoyCon from './joy-con.svelte';
 
@@ -27,6 +28,8 @@
     );
     observer.observe(body);
   });
+
+  const iconSizeSet = [400, 350, 300, 250, 200, 150, 100, 50];
 </script>
 
 <svelte:window on:pageshow={() => (open = false)} />
@@ -53,43 +56,28 @@
         <div class="icons">
           <div class="switch_icon" />
           <div class="switch_icon active new">
-            <picture>
-              <source
-                type="image/webp"
-                sizes="25vw"
-                srcset="switch_icon-400w.webp 400w, switch_icon-350w.webp 350w, switch_icon-300w.webp 300w, switch_icon-250w.webp 250w, switch_icon-200w.webp 200w, switch_icon-150w.webp 150w, switch_icon-100w.webp 100w, switch_icon-50w.webp 50w"
-              />
-              <source
-                type="image/jpg"
-                sizes="25vw"
-                srcset="switch_icon-400w.jpg 400w, switch_icon-350w.jpg 350w, switch_icon-300w.jpg 300w, switch_icon-250w.jpg 250w, switch_icon-200w.jpg 200w, switch_icon-150w.jpg 150w, switch_icon-100w.jpg 100w, switch_icon-50w.jpg 50w"
-              />
-              <img src="switch_icon-400w.jpg" alt="アイコン画像" />
-            </picture>
-            <picture>
-              <source
-                type="image/webp"
-                sizes="35vw"
-                srcset="switch_icon-400w.webp 400w, switch_icon-350w.webp 350w, switch_icon-300w.webp 300w, switch_icon-250w.webp 250w, switch_icon-200w.webp 200w, switch_icon-150w.webp 150w, switch_icon-100w.webp 100w, switch_icon-50w.webp 50w"
-              />
-              <source
-                type="image/jpg"
-                sizes="35vw"
-                srcset="switch_icon-400w.jpg 400w, switch_icon-350w.jpg 350w, switch_icon-300w.jpg 300w, switch_icon-250w.jpg 250w, switch_icon-200w.jpg 200w, switch_icon-150w.jpg 150w, switch_icon-100w.jpg 100w, switch_icon-50w.jpg 50w"
-              />
-              <img class="switch_phantom" src="switch_icon-400w.jpg" alt="アイコン画像" />
-            </picture>
+            <Picture
+              imgClass="switch_real"
+              alt="SnymのPredator And Wreakのアイコン画像"
+              imageTypes={['webp', 'jpg']}
+              sizes="25vw"
+              sizeSet={iconSizeSet}
+              fallbackSize={iconSizeSet[0]}
+              srcName="switch_icon"
+            />
+            <Picture
+              imgClass="switch_phantom"
+              alt="SnymのPredator And Wreakのアイコン画像"
+              imageTypes={['webp', 'jpg']}
+              sizes="35vw"
+              sizeSet={iconSizeSet}
+              fallbackSize={iconSizeSet[0]}
+              srcName="switch_icon"
+            />
           </div>
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
-          <div class="switch_icon" />
+          {#each Array(10) as _}
+            <div class="switch_icon" />
+          {/each}
         </div>
         <h2>My Nintendo Storeはこちら</h2>
       </div>
@@ -228,17 +216,17 @@
         @media (prefers-color-scheme: light)
           animation: calc(28s/60) ease forwards calc(28s/60) switch_add, .5s cubic-bezier(.5,0,.8,1) infinite alternate calc(28s/60) switch_blink-light
 
-    img
+    :global(img)
       width: calc(100% - 0.04 * var(--icon-width))
       height: calc(100% - 0.04 * var(--icon-width))
       position: absolute
       top: calc(0.02 * var(--icon-width))
       left: calc(0.02 * var(--icon-width))
       border: none
-      .switch_and_play &:not(.switch_phantom)
+      .switch_and_play &:global(.switch_real)
         animation: calc(28s/60) ease forwards calc(28s/60) switch_fade
 
-  .switch_phantom
+  :global(.switch_phantom)
     visibility: hidden
     opacity: 0.8
     transform: scale(1)

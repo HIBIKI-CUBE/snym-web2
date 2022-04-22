@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Picture from '../components/picture.svelte';
   import Line from '../components/line.svelte';
   import Frame from '../components/frame.svelte';
   import Header from '../components/header.svelte';
