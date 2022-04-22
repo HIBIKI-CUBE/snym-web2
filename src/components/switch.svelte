@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  let anchor, icons;
+  import JoyCon from './joy-con.svelte';
+
+  let anchor, body;
   let open = false,
     switch_and_play = false;
 
@@ -15,7 +17,7 @@
 
     let observer = new IntersectionObserver(
       (entries, observer) => {
-        if (entries[0].isIntersecting && entries[0].intersectionRatio > 0.6) {
+        if (entries[0].isIntersecting && entries[0].intersectionRatio > 0.2) {
           switch_and_play = true;
         } else {
           switch_and_play = false;
@@ -23,7 +25,7 @@
       },
       { threshold: [0, 1] }
     );
-    observer.observe(icons);
+    observer.observe(body);
   });
 </script>
 
@@ -31,8 +33,13 @@
 
 <div class="switch" class:open class:switch_and_play>
   <div class="joy-con-container">
-    <img class="joy-con L" src="joy-con-l.svg" alt="Joy-Con L" />
-    <img class="joy-con R" src="joy-con-r.svg" alt="Joy-Con R" />
+    <div class="joy-con-animation">
+      <JoyCon L />
+    </div>
+
+    <div class="joy-con-animation R">
+      <JoyCon R />
+    </div>
   </div>
 
   <a
@@ -40,10 +47,10 @@
     class="switch_home-anchor"
     bind:this={anchor}
   >
-    <div class="body">
+    <div class="body" bind:this={body}>
       <div class="display">
         <div class="switch_cover" />
-        <div class="icons" bind:this={icons}>
+        <div class="icons">
           <div class="switch_icon" />
           <div class="switch_icon active new">
             <picture>
@@ -111,8 +118,8 @@
         width: 100%
         display: flex
         justify-content space-between
-
-      .joy-con
+      
+      .joy-con-animation
         width 15%
         opacity 0
         transform: translateY(-200%)
@@ -121,7 +128,8 @@
         &.R
           transition-delay: calc(5s/60)
 
-    &.switch_and_play .joy-con
+
+    &.switch_and_play .joy-con-animation
       opacity 1
       transform: translateY(0vh)
 
