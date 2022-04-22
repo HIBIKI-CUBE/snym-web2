@@ -33,7 +33,7 @@
 
 <div class="switch" class:open class:switch_and_play>
   <div class="joy-con-container">
-    <div class="joy-con-animation">
+    <div class="joy-con-animation L">
       <JoyCon L />
     </div>
 
@@ -113,6 +113,7 @@
     font-size: 2.5vw
     filter: drop-shadow(#244d1a 0 0 10px)
     margin: 2em 0
+    z-index: 2
 
     .joy-con-container
         width: 100%

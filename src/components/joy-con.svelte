@@ -19,13 +19,12 @@
   function newColor() {
     swap = true;
     setTimeout(() => {
+      colorOld = color;
+      while(color == colorOld) {
+        color = colors[Math.floor(Math.random() * colors.length)];
+      }
       swap = false;
     }, 500);
-    colorOld = color;
-    color = colors[Math.floor(Math.random() * colors.length)];
-    if (color == colorOld) {
-      newColor();
-    }
   }
   newColor();
 </script>
@@ -173,7 +172,7 @@
 .joy-con
   opacity 1
   transform: translateY(0vh)
-  transition: transform calc(56s/60) cubic-bezier(0.16, 1, 0.3, 1), opacity calc(14s/60) cubic-bezier(0.16, 1, 0.3, 1)
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity calc(14s/60) cubic-bezier(0.16, 1, 0.3, 1)
   &.swap
     transform: translateY(-200%)
     opacity 0
