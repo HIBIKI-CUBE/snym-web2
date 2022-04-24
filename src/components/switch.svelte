@@ -56,24 +56,17 @@
         <div class="icons">
           <div class="switch_icon" />
           <div class="switch_icon active new">
-            <Picture
-              imgClass="switch_real"
-              alt="SnymのPredator And Wreakのアイコン画像"
-              imageTypes={['webp', 'jpg']}
-              sizes="25vw"
-              sizeSet={iconSizeSet}
-              fallbackSize={iconSizeSet[0]}
-              srcName="switch_icon"
-            />
-            <Picture
-              imgClass="switch_phantom"
-              alt="SnymのPredator And Wreakのアイコン画像"
-              imageTypes={['webp', 'jpg']}
-              sizes="35vw"
-              sizeSet={iconSizeSet}
-              fallbackSize={iconSizeSet[0]}
-              srcName="switch_icon"
-            />
+            {#each ['switch_real', 'switch_phantom'] as className}
+              <Picture
+                imgClass={className}
+                alt="SnymのPredator And Wreakのアイコン画像"
+                imageTypes={['webp', 'jpg']}
+                sizes="25vw"
+                sizeSet={iconSizeSet}
+                fallbackSize={iconSizeSet[0]}
+                srcName="switch_icon"
+              />
+            {/each}
           </div>
           {#each Array(10) as _}
             <div class="switch_icon" />
