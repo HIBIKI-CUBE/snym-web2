@@ -88,7 +88,7 @@
             </tr>
             <tr>
               <td>対応ハード</td>
-              <td>Nintendo Switch</td>
+              <td>PC, Nintendo Switch</td>
             </tr>
             <tr>
               <td>開発元</td>
