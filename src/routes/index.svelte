@@ -111,7 +111,7 @@
           />
         {/await}
       </Frame>
-      <section>
+      <section class="materials">
         <details>
           <summary>
             <h3>使用素材・環境</h3>
@@ -416,6 +416,9 @@
 
   .members
     flex-direction row
+  
+  .materials
+    margin 2em 0
   
   summary
     h3

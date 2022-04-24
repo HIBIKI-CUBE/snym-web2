@@ -25,6 +25,7 @@
 .frame
   position: relative
   margin: 4em 0 4em
+  display: inline-block
   &:not(.rigid)
     width: 100%
   @media screen and (max-aspect-ratio: 9/8)
