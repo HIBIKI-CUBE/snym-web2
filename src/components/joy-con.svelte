@@ -20,9 +20,7 @@
     swap = true;
     setTimeout(() => {
       colorOld = color;
-      while(color == colorOld) {
-        color = colors[Math.floor(Math.random() * colors.length)];
-      }
+      color = (colors.filter(v => v != colorOld))[Math.floor(Math.random() * (colors.length - 1))];
       swap = false;
     }, 500);
   }
