@@ -6,8 +6,8 @@
     id = '',
     post = '',
     twitter = '',
-    sizeSet:number[] = [];
-  
+    sizeSet: number[] = [];
+
   let fallbackSize: number;
 
   if (id) {
@@ -15,28 +15,47 @@
       sizeSet = [400, 350, 300, 250, 200, 150, 100, 50];
     }
     fallbackSize = sizeSet[0];
-  }else{
+  } else {
     sizeSet = undefined;
     fallbackSize = undefined;
   }
 </script>
 
-<a href={twitter && 'https://twitter.com/' + twitter} class="id flex-container temporary">
-  <Picture
-    alt="Snymのメンバーの{name}の画像"
-    imageTypes={['webp', 'jpg']}
-    sizes="(max-width: 600px) 15vw, 5vw"
-    {sizeSet}
-    {fallbackSize}
-    srcName={id || 'team_logo'}
-  />
-  <div class="layout">
-    <h4 class="name">{name}</h4>
-    <div class="post">
-      <Line content={post} noLine/>
+{#if twitter}
+  <a href="https://twitter.com/{twitter}" class="id flex-container temporary">
+    <Picture
+      alt="Snymのメンバーの{name}の画像"
+      imageTypes={['webp', 'jpg']}
+      sizes="(max-width: 600px) 15vw, 5vw"
+      {sizeSet}
+      {fallbackSize}
+      srcName={id || 'team_logo'}
+    />
+    <div class="layout">
+      <h4 class="name">{name}</h4>
+      <div class="post">
+        <Line content={post} noLine />
+      </div>
+    </div>
+  </a>
+{:else}
+  <div class="id flex-container temporary">
+    <Picture
+      alt="Snymのメンバーの{name}の画像"
+      imageTypes={['webp', 'jpg']}
+      sizes="(max-width: 600px) 15vw, 5vw"
+      {sizeSet}
+      {fallbackSize}
+      srcName={id || 'team_logo'}
+    />
+    <div class="layout">
+      <h4 class="name">{name}</h4>
+      <div class="post">
+        <Line content={post} noLine />
+      </div>
     </div>
   </div>
-</a>
+{/if}
 
 <style lang="stylus">
 .id
@@ -49,8 +68,9 @@
   color currentColor
   text-decoration none
   padding-right 3em
+  width 100%
 
-  &:not([href=""]):after
+  &[href^="https://twitter.com/"]:after
     content url('/twitter.svg')
     display block
     position absolute
@@ -59,7 +79,7 @@
     height 1em
     width 1em
 
-  &[href=""]:after
+  &:not([href^="https://twitter.com/"]):after
     content ''
     display block
     position absolute
@@ -80,10 +100,10 @@
     // border-color transparent
     // border-right-color #fff
   
-  &[href=""]:before
+  &:not([href^="https://twitter.com/"]):before
     border-right-color var(--ui-bg)
 
-  &[href=""]:hover:before
+  &:not([href^="https://twitter.com/"]):hover:before
     border-right-color var(--accent-color)
 
   &:before
