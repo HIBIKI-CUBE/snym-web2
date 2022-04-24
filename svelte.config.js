@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-netlify';
+import adapter from '@sveltejs/adapter-vercel';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,7 +8,9 @@ const config = {
   preprocess: preprocess(),
   kit: {
     adapter: adapter({
-      split: false
+      split: false,
+      edge: false,
+      external: []
     })
   }
 };
