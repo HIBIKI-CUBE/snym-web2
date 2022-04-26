@@ -45,7 +45,6 @@
       }
       .prefix__B.fill {
         fill: var(--joyConColor);
-        transition: fill 200ms cubic-bezier(0, 0.1, 0.35, 1);
       }
       .prefix__C {
         fill: #44484c;
@@ -130,7 +129,6 @@
     <style>
       .fill {
         fill: var(--joyConColor);
-        transition: fill 200ms cubic-bezier(0, 0.1, 0.35, 1);
       }
     </style>
     <path
