@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/67a41a13-adf5-46f2-b095-ef7f5d89fe12/deploy-status)](https://app.netlify.com/sites/sparkling-pixie-a448a6/deploys)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=snym-web2)
 
 https://snymgames.com
 
