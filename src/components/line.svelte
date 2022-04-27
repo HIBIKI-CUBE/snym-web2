@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { elements } from '../stores/elements';
+  import InPageLink from './inPageLink.svelte';
+
   /** 半角スペースで分割した文字列(スペース２つで通常のスペースを表示) */
   export let content: string = '',
     mdMode = false,
@@ -56,11 +59,11 @@
     {#each processMd(content) as rawChunk}
       {#if rawChunk.match(/\[.+?\]\(.+?\)/)}
         {#if rawChunk.match(/\((#.+?)\)/)}
-          <a href=".#" data-target={rawChunk.match(/\((#.+?)\)/)[1]}>
+          <InPageLink target={$elements[rawChunk.match(/\(#(.+?)\)/)[1]]}>
             {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}
               <span class="chunk {noLine && 'noLine'}">{chunk}</span>
             {/each}
-          </a>
+          </InPageLink>
         {:else}
           <a href={rawChunk.match(/\((.+?)\)/)[1]}>
             {#each splitDualSpace(rawChunk.match(/\[(.*?)\]/)[1]) as chunk}

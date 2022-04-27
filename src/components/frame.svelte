@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let title: string = null;
+  export let title: string = null,
+    element: HTMLElement | null = null;
 </script>
 
 <section
@@ -10,6 +11,7 @@
     {$$props.rigid ? 'rigid' : ''}
   "
   id={$$props.id}
+  bind:this={element}
 >
   <div class="frame-content" style={$$props.style}>
     {#if title}

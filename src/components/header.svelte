@@ -1,22 +1,26 @@
 <script lang="ts">
-  import Picture from "../components/picture.svelte";
+  import Picture from '../components/picture.svelte';
   import { onMount } from 'svelte';
+  import { elements } from '../stores/elements';
 
   const scroll_duration = 400; //ms
 
   let abort_scroll = false,
-      header: HTMLElement;
+    header : HTMLElement;
 
   function easeInOutCubic(x: number) {
     return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   }
 
   onMount(() => {
-    const buttons: HTMLElement[] = Array.from(document.querySelectorAll("[data-target]"));
+    $elements.header = header;
+    const buttons: HTMLElement[] = Array.from(document.querySelectorAll('[data-target]'));
     buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = document.getElementById(button.dataset.target);
-          requestAnimationFrame((time: number) =>
+      button.addEventListener(
+        'click',
+        () => {
+          const target = document.getElementById(button.dataset.target);
+          requestAnimationFrame((time: number) => {
             smooth_scroll(
               time,
               time,
@@ -24,27 +28,25 @@
                 document.documentElement.scrollTop ||
                 document.body.scrollTop ||
                 0,
-              button.dataset.target == "top"
+              button.dataset.target == 'top'
                 ? 0
                 : target.getBoundingClientRect().top -
                     parseFloat(getComputedStyle(target).marginTop) -
-                    header.clientHeight
-            )
-          );
+                    $elements.header.clientHeight
+            );
+          });
         },
         { passive: true }
       );
     });
 
-    const checkbox = <HTMLInputElement>document.getElementById("button_checkbox");
+    const checkbox = <HTMLInputElement>document.getElementById('button_checkbox');
 
     setTimeout(() => (checkbox.checked = false), 2000);
     function smooth_scroll(time: number, start_time: number, origin: number, destination: number) {
       if (time == start_time) {
         checkbox.checked = false;
-        requestAnimationFrame((time) =>
-          smooth_scroll(time, start_time, origin, destination)
-        );
+        requestAnimationFrame((time) => smooth_scroll(time, start_time, origin, destination));
         return;
       }
       if (abort_scroll) {
@@ -52,26 +54,40 @@
         return;
       }
       scrollTo({
-        top: origin + (destination || origin * -1) * easeInOutCubic((time - start_time) / scroll_duration),
+        top:
+          origin +
+          (destination || origin * -1) * easeInOutCubic((time - start_time) / scroll_duration)
       });
       if (time - start_time > scroll_duration) return;
-      requestAnimationFrame((time) =>
-        smooth_scroll(time, start_time, origin, destination)
-      );
+      requestAnimationFrame((time) => smooth_scroll(time, start_time, origin, destination));
     }
 
-    addEventListener("touchstart", () => (abort_scroll = true), {
-      passive: true,
+    addEventListener('touchstart', () => (abort_scroll = true), {
+      passive: true
     });
-    addEventListener("touchend", () => (abort_scroll = false), {
-      passive: true,
+    addEventListener('touchend', () => (abort_scroll = false), {
+      passive: true
     });
   });
 </script>
 
 <header bind:this={header}>
-  <Picture imgClass="logo" target="top" title="クリックするとページの先頭に戻ります" alt="Snym(スナイム)のPREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの画像" imageTypes={["webp", "png"]} sizes="11.5vh" srcName="team_logo"></Picture>
-  <input type="checkbox" class="ui_button button_checkbox" checked={true} name="button_checkbox" id="button_checkbox">
+  <Picture
+    imgClass="logo"
+    target="top"
+    title="クリックするとページの先頭に戻ります"
+    alt="Snym(スナイム)のPREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの画像"
+    imageTypes={['webp', 'png']}
+    sizes="11.5vh"
+    srcName="team_logo"
+  />
+  <input
+    type="checkbox"
+    class="ui_button button_checkbox"
+    checked={true}
+    name="button_checkbox"
+    id="button_checkbox"
+  />
   <label for="button_checkbox" class="button" title="クリックするとナビゲーションを開閉できます">
     <svg class="button_svg" viewBox="0 0 24 24" fill="white">
       <path d="M0 0h24v24H0z" fill="none" />
@@ -92,7 +108,7 @@
 
 <svelte:head>
   <style>
-    .logo{
+    .logo {
       display: inline-block;
       height: 100%;
       width: auto;

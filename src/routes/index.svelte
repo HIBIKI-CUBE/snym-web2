@@ -22,6 +22,7 @@
   import Steam from '../components/steam.svelte';
   import Footer from '../components/footer.svelte';
   import Member from '../components/member.svelte';
+  import { elements } from '../stores/elements';
 
   export let contents;
 </script>
@@ -61,7 +62,7 @@
         </p>
       </Frame>
       <div class="flex-container">
-        <Frame title="あらすじ" liquid id="story">
+        <Frame title="あらすじ" liquid id="story" bind:element={$elements.story}>
           {#await contents then content}
             {#each content.story.split('\n') as line}
               <p>
@@ -70,7 +71,7 @@
             {/each}
           {/await}
         </Frame>
-        <Frame title="ゲーム情報" rigid flex id="game_info">
+        <Frame title="ゲーム情報" rigid flex id="game_info" bind:element={$elements.game_info}>
           <table class="content">
             <tr>
               <td>ジャンル</td>
@@ -103,7 +104,7 @@
       <div class="switch_wrapper">
         <Switch />
       </div>
-      <Frame title="トレーラー映像" flex id="trailer">
+      <Frame title="トレーラー映像" flex id="trailer" bind:element={$elements.trailer}>
         {#await contents then content}
           <Youtube
             id={content.youtubeID}
@@ -150,7 +151,7 @@
           </div>
         </details>
       </section>
-      <section>
+      <section bind:this={$elements.team}>
         <h3 id="team">チームSnym（スナイム）とは</h3>
         <div class="flex-container">
           <Frame title="概要">
@@ -247,7 +248,7 @@
     </article>
   </section>
   <section>
-    <article>
+    <article bind:this={$elements.member}>
       <h2 class="main_member_title" id="member">制作者一覧</h2>
       <section>
         <h3>Snym</h3>
