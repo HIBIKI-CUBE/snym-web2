@@ -3,6 +3,8 @@
   import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
 
+  setTimeout(() => (checkbox.checked = false), 1500);
+
   const targets = [
     {
       id: 'story',
