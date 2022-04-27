@@ -18,7 +18,7 @@
       '#BFA27B',
       '#E1E3E3'
     ],
-    R:[
+    R: [
       '#71787B',
       '#03BDDA',
       '#FE584D',
@@ -36,7 +36,7 @@
     ]
   };
 
-  const colors = colorSet[$$props.R ? "R" : "L"]
+  const colors = colorSet[$$props.R ? 'R' : 'L'];
 
   let color = '',
     colorOld = '',
@@ -185,8 +185,8 @@
     /><path
       d="M147.03 351.36v-18.735l16.225 9.368-16.225 9.367zm-80.394 0v-18.735l-16.225 9.368 16.225 9.367zm49.424-49.31H97.325l9.368-16.225 9.367 16.225zm0 80.4H97.325l9.368 16.225 9.367-16.225z"
       stroke="#000"
-    /></svg
-  >
+    />
+  </svg>
 {/if}
 
 <style lang="stylus">
@@ -194,6 +194,11 @@
   opacity 1
   transform: translateY(0vh)
   transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity calc(14s/60) cubic-bezier(0.16, 1, 0.3, 1)
+  position: relative
+  top calc(3/290 * -100%)
+  height: 101%
+  &.L
+    left calc(9/105 * -30%)
   &.swap
     transform: translateY(-200%)
     opacity 0
