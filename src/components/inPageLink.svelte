@@ -56,7 +56,7 @@
 />
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<a on:click={startScroll}>
+<a class={$$props.class || ''} on:click={startScroll}>
   <slot />
 </a>
 

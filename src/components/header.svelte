@@ -1,77 +1,35 @@
 <script lang="ts">
   import Picture from '../components/picture.svelte';
-  import { onMount } from 'svelte';
+  import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
 
-  const scroll_duration = 400; //ms
-
-  let abort_scroll = false,
-    header : HTMLElement;
-
-  function easeInOutCubic(x: number) {
-    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-  }
-
-  onMount(() => {
-    $elements.header = header;
-    const buttons: HTMLElement[] = Array.from(document.querySelectorAll('[data-target]'));
-    buttons.forEach((button) => {
-      button.addEventListener(
-        'click',
-        () => {
-          const target = document.getElementById(button.dataset.target);
-          requestAnimationFrame((time: number) => {
-            smooth_scroll(
-              time,
-              time,
-              window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop ||
-                0,
-              button.dataset.target == 'top'
-                ? 0
-                : target.getBoundingClientRect().top -
-                    parseFloat(getComputedStyle(target).marginTop) -
-                    $elements.header.clientHeight
-            );
-          });
-        },
-        { passive: true }
-      );
-    });
-
-    const checkbox = <HTMLInputElement>document.getElementById('button_checkbox');
-
-    setTimeout(() => (checkbox.checked = false), 2000);
-    function smooth_scroll(time: number, start_time: number, origin: number, destination: number) {
-      if (time == start_time) {
-        checkbox.checked = false;
-        requestAnimationFrame((time) => smooth_scroll(time, start_time, origin, destination));
-        return;
-      }
-      if (abort_scroll) {
-        abort_scroll = false;
-        return;
-      }
-      scrollTo({
-        top:
-          origin +
-          (destination || origin * -1) * easeInOutCubic((time - start_time) / scroll_duration)
-      });
-      if (time - start_time > scroll_duration) return;
-      requestAnimationFrame((time) => smooth_scroll(time, start_time, origin, destination));
+  const targets = [
+    {
+      id: 'story',
+      label: 'あらすじ'
+    },
+    {
+      id: 'game_info',
+      label: 'ゲーム情報'
+    },
+    {
+      id: 'trailer',
+      label: 'トレーラー'
+    },
+    {
+      id: 'team',
+      label: 'Snymとは'
+    },
+    {
+      id: 'member',
+      label: 'メンバー'
     }
+  ];
 
-    addEventListener('touchstart', () => (abort_scroll = true), {
-      passive: true
-    });
-    addEventListener('touchend', () => (abort_scroll = false), {
-      passive: true
-    });
-  });
+  let checkbox;
 </script>
 
-<header bind:this={header}>
+<header bind:this={$elements.header}>
   <Picture
     imgClass="logo"
     target="top"
@@ -87,6 +45,7 @@
     checked={true}
     name="button_checkbox"
     id="button_checkbox"
+    bind:this={checkbox}
   />
   <label for="button_checkbox" class="button" title="クリックするとナビゲーションを開閉できます">
     <svg class="button_svg" viewBox="0 0 24 24" fill="white">
@@ -98,11 +57,15 @@
     <label for="button_checkbox" class="list_items title">
       <h3 class="title"><span class="break-scope">ナビゲーション</span>を閉じる</h3>
     </label>
-    <div class="list_items" data-target="story">あらすじ</div>
-    <div class="list_items" data-target="game_info">ゲーム情報</div>
-    <div class="list_items" data-target="trailer">トレーラー</div>
-    <div class="list_items" data-target="team">Snymとは</div>
-    <div class="list_items" data-target="member">メンバー</div>
+    {#each targets as target}
+      <InPageLink
+        class="list_items"
+        target={$elements[target.id]}
+        beforeScroll={() => (checkbox.checked = false)}
+      >
+        {target.label}
+      </InPageLink>
+    {/each}
   </nav>
 </header>
 
@@ -229,31 +192,33 @@ nav
       flex 0 0 100vw
       line-height var(--base-size)
 
-
-.list_items
-  display block
-  width 100%
-  background-color var(--ui-over-bg)
+header
+  :global(.list_items)
+    display block
+    width 100%
+    text-decoration none
+    background-color var(--ui-over-bg)
+    height var(--base-size)
+    line-height var(--base-size)
+    margin 0
+    padding 0
+    border none
+    text-align center
+    color var(--ui-text-color)
   @media screen and (orientation: portrait)
-    flex 0 0 50vw
-    &:last-child
+    :global(.list_items)
+      flex 0 0 50vw
+    :global(.list_items):last-child
       flex 0 0 100vw
-  height var(--base-size)
-  line-height var(--base-size)
-  margin 0
-  padding 0
-  border none
-  text-align center
-  color var(--ui-text-color)
 
-  &:last-child
+  :global(.list_items):last-child
     padding-right env(safe-area-inset-right)
 
-  &:hover
+  :global(.list_items):hover
     @media screen and (orientation: landscape)
       background-color var(--ui-over-bg-hover)
 
-  &+&:before
+  :global(.list_items)+:global(.list_items):before
     @media screen and (orientation: landscape)
       content ''
       position absolute
@@ -265,7 +230,7 @@ nav
       background-color var(--ui-text-color)
 
   @media screen and (orientation: portrait)
-    &+&:nth-child(2):before
+    :global(.list_items)+:global(.list_items):nth-child(2):before
       content none
 
 #button_checkbox:checked ~ nav
