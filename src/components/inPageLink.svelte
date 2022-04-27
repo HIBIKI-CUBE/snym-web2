@@ -55,6 +55,12 @@
   on:touchend={() => (abort_scroll = false)}
 />
 
-<a href=".#" on:click={startScroll}>
+<!-- svelte-ignore a11y-missing-attribute -->
+<a on:click={startScroll}>
   <slot />
 </a>
+
+<style lang="stylus">
+  a
+    cursor: pointer
+</style>
