@@ -1,17 +1,42 @@
 <script lang="ts">
-  const colors = [
-    '#70777B',
-    '#FF5D51',
-    '#02BBE0',
-    '#D4F055',
-    '#00E250',
-    '#FF4983',
-    '#3C57C1',
-    '#A72AB0',
-    '#FFB404',
-    '#EA323B',
-    '#E1E3E3'
-  ];
+  //https://ninten-switch.com/nintendo-switch-joy-con-374
+  const colorSet = {
+    L: [
+      '#71787B',
+      '#03BDDA',
+      '#FE584D',
+      '#D2F056',
+      '#06DF4E',
+      '#FD4882',
+      '#EE2C38',
+      '#2857C3',
+      '#C228B6',
+      '#D4A24D',
+      '#6E7377',
+      '#3A69C0',
+      '#8E2CA9',
+      '#BFA27B',
+      '#E1E3E3'
+    ],
+    R:[
+      '#71787B',
+      '#03BDDA',
+      '#FE584D',
+      '#D2F056',
+      '#06DF4E',
+      '#FD4882',
+      '#EE2C38',
+      '#FEB405',
+      '#FDDB50',
+      '#6E7377',
+      '#3A69C0',
+      '#F04A80',
+      '#BFA27B',
+      '#E1E3E3'
+    ]
+  };
+
+  const colors = colorSet[$$props.R ? "R" : "L"]
 
   let color = '',
     colorOld = '',
@@ -20,7 +45,7 @@
     swap = true;
     setTimeout(() => {
       colorOld = color;
-      color = (colors.filter(v => v != colorOld))[Math.floor(Math.random() * (colors.length - 1))];
+      color = colors.filter((v) => v != colorOld)[Math.floor(Math.random() * (colors.length - 1))];
       swap = false;
     }, 500);
   }
