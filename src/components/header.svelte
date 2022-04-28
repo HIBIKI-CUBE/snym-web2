@@ -217,7 +217,7 @@ header
   @media screen and (orientation: portrait)
     :global(.list_items)
       flex 0 0 50vw
-    :global(.list_items):nth-child(even):last-child
+    :global(.list_items):nth-child(odd):last-child
       flex 0 0 100vw
 
   :global(.list_items):last-child
