@@ -13,7 +13,7 @@
   id={$$props.id}
   bind:this={element}
 >
-  <div class="frame-content" style={$$props.style}>
+  <div class="frame-content">
     {#if title}
       <h3 class="title">{title}</h3>
     {/if}
@@ -39,14 +39,14 @@
     width: 100%
     position: absolute
     background-image: url(/frame-corner.svg)
-    background-position: top left
-    background-size: 100% 2em
-    background-clip: border-box
+    background-position: top right
+    background-repeat no-repeat
+    background-origin: border-box
     box-sizing: border-box
-    border: calc(2em * 20 / 171) solid
-    border-image: linear-gradient(to left, transparent 0%, transparent 25%, #00ff3a 25%, #00ff3a 100%);
-    border-image-slice: 1
+    border: solid
     border-width: 0px 0px calc(2em * 20 / 171) calc(2em * 20 / 171)
+    border-image: linear-gradient(to left, #0000 0%, #0000 calc(2em*305/171), #00ff3a calc(2em*305/171), #00ff3a 100%);
+    border-image-slice: 1
   &:before
     top: -2em
     transform: rotate(180deg)
