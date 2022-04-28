@@ -2,8 +2,11 @@
   import Picture from '../components/picture.svelte';
   import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
+  import { onMount } from 'svelte';
 
-  setTimeout(() => (checkbox.checked = false), 1500);
+  onMount(() => {
+    setTimeout(() => (checkbox.checked = false), 1500);
+  });
 
   const targets = [
     {
