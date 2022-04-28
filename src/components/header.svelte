@@ -1,5 +1,6 @@
 <script lang="ts">
   import Picture from '../components/picture.svelte';
+  import Line from '../components/line.svelte';
   import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
   import { onMount } from 'svelte';
@@ -60,7 +61,7 @@
   </label>
   <nav>
     <label for="button_checkbox" class="list_items title">
-      <h3 class="title"><span class="break-scope">ナビゲーション</span>を閉じる</h3>
+      <h3 class="title"><Line content="ナビゲーション を 閉じる" /></h3>
     </label>
     {#each targets as target}
       <InPageLink

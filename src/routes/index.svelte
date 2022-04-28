@@ -341,6 +341,9 @@
   :global(.flex_half)
     flex 0 0 47.5%
 
+  :global(.break-scope)
+    display inline-block
+
   // :global(.liquid)
   //   flex 1
   //   margin-right calc(var(--article-width) * 0.05)
