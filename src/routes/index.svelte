@@ -101,9 +101,10 @@
           </table>
         </Frame>
       </div>
-      <div class="steam_wrapper">
+      <div class="steam_wrapper" bind:this={$elements.buy}>
         <Steam />
       </div>
+      <div></div>
       <div class="switch_wrapper">
         <Switch />
       </div>
