@@ -12,7 +12,7 @@
     "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install"
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "^1.0.0-next.49",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.50",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
@@ -31,8 +31,9 @@
   "type": "module",
   "dependencies": {
     "@splidejs/svelte-splide": "^0.2.1",
+    "dateformat": "^5.0.3",
     "microcms-js-sdk": "^2.0.0",
-    "pnpm": "^6.32.9",
+    "pnpm": "^6.32.11",
     "stylus": "^0.54.8"
   }
 }

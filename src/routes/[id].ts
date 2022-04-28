@@ -12,11 +12,12 @@ export async function get({ params }) {
 
   return client
     .get({
-      endpoint: 'contents'
+      endpoint: params.id,
+      queries: { limit: 100 }
     })
     .then((res) => {
       return {
-        body: res
+        body: params.id == 'history' ? res.contents.reverse() : res
       };
     });
 }

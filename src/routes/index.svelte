@@ -1,12 +1,14 @@
 <script lang="ts" context="module">
   /** @type {import('index.svelte').Load} */
   export async function load({ fetch }) {
-    const response = await fetch('/contents');
+    const responseContents = await fetch('/contents');
+    const responseHistory = await fetch('/history');
 
     return {
-      status: response.status,
+      status: responseContents.status && responseHistory.status,
       props: {
-        contents: response.ok && (await response.json())
+        promiseContent: responseContents.ok && (await responseContents.json()),
+        promiseHistory: responseHistory.ok && (await responseHistory.json())
       }
     };
   }
@@ -23,8 +25,9 @@
   import Footer from '../components/footer.svelte';
   import Member from '../components/member.svelte';
   import { elements } from '../stores/elements';
+  import dateFormat from 'dateformat';
 
-  export let contents;
+  export let promiseContent, promiseHistory;
 </script>
 
 <svelte:head>
@@ -56,14 +59,14 @@
       <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
       <Frame title="お知らせ">
         <p>
-          {#await contents then content}
+          {#await promiseContent then content}
             <Line content={content.info} mdMode />
           {/await}
         </p>
       </Frame>
       <div class="flex-container">
         <Frame title="あらすじ" liquid id="story" bind:element={$elements.story}>
-          {#await contents then content}
+          {#await promiseContent then content}
             {#each content.story.split('\n') as line}
               <p>
                 <Line content={line} mdMode />
@@ -105,7 +108,7 @@
         <Switch />
       </div>
       <Frame title="トレーラー映像" flex id="trailer" bind:element={$elements.trailer}>
-        {#await contents then content}
+        {#await promiseContent then content}
           <Youtube
             id={content.youtubeID}
             title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み"
@@ -155,7 +158,7 @@
         <h3 id="team">チームSnym（スナイム）とは</h3>
         <div class="flex-container">
           <Frame title="概要">
-            {#await contents then content}
+            {#await promiseContent then content}
               {#each content.outline.split('\n') as line}
                 <p>
                   <Line content={line} mdMode />
@@ -165,79 +168,56 @@
           </Frame>
           <Frame title="来歴" flex>
             <table>
-              <tr>
-                <td><time datetime="2019-08">2019年8月</time></td>
-                <td>東京電機大学にて発足</td>
-              </tr>
-              <tr>
-                <td><time datetime="2019-12">12月</time></td>
-                <td
-                  >C97(コミックマーケット)でSRCサークル内のブースでPREDATOR AND WRECK TRIAL
-                  VERSIONを頒布</td
-                >
-              </tr>
-              <tr>
-                <td><time datetime="2020-04">2020年4月</time></td>
-                <td>C98(コミックマーケット)に当選するが中止</td>
-              </tr>
-              <tr>
-                <td><time datetime="2020-10">10月</time></td>
-                <td
-                  ><a href="https://twitter.com/GC_koushien/status/1313736347568332802?s=20"
-                    >ゲームクリエイター甲子園 9月話題賞受賞</a
-                  ></td
-                >
-              </tr>
-              <tr>
-                <td><time datetime="2020-11">11月</time></td>
-                <td
-                  ><a href="https://twitter.com/GC_koushien/status/1327186590469263361?s=20"
-                    >ゲームクリエイター甲子園 10月話題賞受賞</a
-                  ></td
-                >
-              </tr>
-              <tr>
-                <td><time datetime="2020-11" data-notext="true" /></td>
-                <td>デジゲー博にてPREDATOR AND WRECK ALPHAを販売</td>
-              </tr>
-              <tr>
-                <td><time datetime="2020-12">12月</time></td>
-                <td
-                  ><a href="https://twitter.com/Snym_Games/status/1340260019439247360?s=20"
-                    >ゲームクリエイター甲子園でファーストインパクト様から企業賞を受賞</a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td><time datetime="2020-12" data-notext="true" /></td>
-                <td
-                  ><a href="https://twitter.com/GC_koushien/status/1340259582199795713?s=20"
-                    >ゲームクリエイター甲子園でユーザー大賞を受賞</a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td><time datetime="2021-2">2021年2月</time></td>
-                <td
-                  ><a href="https://www.dendai.ac.jp/dendai-people/20210212-01.html"
-                    >Snymの活動が東京電機大学のWebサイトに掲載</a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td><time datetime="2021-9-16">9月16日</time></td>
-                <td
-                  ><a href="https://store-jp.nintendo.com/list/software/70010000043070.html"
-                    >「PREDATOR AND WRECK 捕食者と崩壊」を発売</a
-                  ></td
-                >
-              </tr>
+              {#await promiseHistory then history}
+                {#each history as entry, i}
+                  <tr>
+                    <td>
+                      <time
+                        datetime={dateFormat(entry.date, `yyyy-mm${entry.showDay ? '-dd' : ''}`)}
+                      >
+                        {dateFormat(
+                          entry.date,
+                          [
+                            { check: 'yyyy', format: 'yyyy年' },
+                            { check: 'mm', format: 'm月' },
+                            { check: 'dd', format: 'd日' }
+                          ]
+                            .map(
+                              (v) =>
+                                `${(() => {
+                                  if (v.check == 'dd') {
+                                    return entry.showDay ? v.format : '';
+                                  } else {
+                                    return i == 0 ||
+                                      dateFormat(history[i - 1].date, v.check) !=
+                                        dateFormat(entry.date, v.check)
+                                      ? v.format
+                                      : 'n';
+                                  }
+                                })()}`
+                            )
+                            .join('')
+                        ).replaceAll('n', '')}
+                      </time>
+                    </td>
+                    <td>
+                      {#if entry.link}
+                        <a href={entry.link}>
+                          {entry.content}
+                        </a>
+                      {:else}
+                        {entry.content}
+                      {/if}
+                    </td>
+                  </tr>
+                {/each}
+              {/await}
             </table>
           </Frame>
         </div>
       </section>
       <Frame title="連絡先">
-        {#await contents then content}
+        {#await promiseContent then content}
           {#each content.contact.split('\n') as line}
             <p>
               <Line content={line} mdMode />
