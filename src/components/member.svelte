@@ -6,7 +6,8 @@
     id = '',
     post = '',
     twitter = '',
-    sizeSet: number[] = [];
+    sizeSet: number[] = [],
+    imageTypes = ['webp', 'jpg'];
 
   let fallbackSize: number;
 
@@ -25,8 +26,8 @@
   <a href="https://twitter.com/{twitter}" class="id flex-container temporary">
     <Picture
       alt="Snymのメンバーの{name}の画像"
-      imageTypes={['webp', 'jpg']}
-      sizes="(max-width: 600px) 15vw, 5vw"
+      {imageTypes}
+      sizes="(orientation: portrait) 15vw, 5vw"
       {sizeSet}
       {fallbackSize}
       srcName={id || 'team_logo'}
@@ -42,7 +43,7 @@
   <div class="id flex-container temporary">
     <Picture
       alt="Snymのメンバーの{name}の画像"
-      imageTypes={['webp', 'jpg']}
+      {imageTypes}
       sizes="(max-width: 600px) 15vw, 5vw"
       {sizeSet}
       {fallbackSize}

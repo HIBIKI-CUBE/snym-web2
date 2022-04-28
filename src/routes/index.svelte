@@ -104,7 +104,7 @@
       <div class="steam_wrapper" bind:this={$elements.buy}>
         <Steam />
       </div>
-      <div></div>
+      <div />
       <div class="switch_wrapper">
         <Switch />
       </div>
@@ -265,7 +265,7 @@
         <h3>制作協力</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member name="NAMI" post="デバッガー" />
+            <Member name="NAMI" post="デバッガー" imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
@@ -274,10 +274,11 @@
               post="デザイナー"
               twitter="Amu_dsgn"
               sizeSet={[24, 48, 72]}
+              imageTypes={['webp', 'png']}
             />
           </li>
           <li class="flex_half-on_pc flex-container main_member_id">
-            <Member name="SIHYUN" post="サウンドクリエイター" />
+            <Member name="SIHYUN" post="サウンドクリエイター" imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
