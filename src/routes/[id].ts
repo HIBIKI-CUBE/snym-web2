@@ -1,5 +1,6 @@
 import { createClient } from 'microcms-js-sdk'; //ES6
 
+const offline = false;
 // Initialize Client SDK.
 const client = createClient({
   serviceDomain: 'snym',
@@ -9,6 +10,12 @@ const client = createClient({
 /** @type {import('./[id]').RequestHandler} */
 export async function get({ params }) {
   // `params.id` comes from [id].js
+
+  if (offline) {
+    return {
+      body: params.id == 'history' ? [] : {info: '',story: '',youtubeID: '',outline: '',contact: ''}
+    }
+  }
 
   return client
     .get({
