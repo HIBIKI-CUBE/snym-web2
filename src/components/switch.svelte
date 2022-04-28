@@ -153,7 +153,7 @@
       content: ""
       display: block
       width: (100% * 1220/1280)
-      height: calc(max(100% * 1/1280, 0.5px))
+      height: calc(max(100% * 1/1280, 1px))
       background-color: #fff
       @media (prefers-color-scheme: light)
         height: calc(max(100% * 3/1280, 1.5px))
