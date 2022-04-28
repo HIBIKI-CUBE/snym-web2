@@ -1,6 +1,5 @@
 <script lang="ts">
   import Picture from '../components/picture.svelte';
-  import Line from '../components/line.svelte';
   import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
   import { onMount } from 'svelte';
@@ -17,6 +16,10 @@
     {
       id: 'game_info',
       label: 'ゲーム情報'
+    },
+    {
+      id: 'buy',
+      label: '購入'
     },
     {
       id: 'trailer',
@@ -60,8 +63,8 @@
     </svg>
   </label>
   <nav>
-    <label for="button_checkbox" class="list_items title">
-      <h3 class="title"><Line content="ナビゲーション を 閉じる" /></h3>
+    <label for="button_checkbox" class="list_items ">
+      閉じる
     </label>
     {#each targets as target}
       <InPageLink
@@ -214,15 +217,14 @@ header
   @media screen and (orientation: portrait)
     :global(.list_items)
       flex 0 0 50vw
-    :global(.list_items):last-child
+    :global(.list_items):nth-child(even):last-child
       flex 0 0 100vw
 
   :global(.list_items):last-child
     padding-right env(safe-area-inset-right)
 
   :global(.list_items):hover
-    @media screen and (orientation: landscape)
-      background-color var(--ui-over-bg-hover)
+    background-color var(--ui-over-bg-hover)
 
   :global(.list_items)+:global(.list_items):before
     @media screen and (orientation: landscape)
@@ -234,10 +236,6 @@ header
       height calc(var(--base-size) * 0.8)
       display block
       background-color var(--ui-text-color)
-
-  @media screen and (orientation: portrait)
-    :global(.list_items)+:global(.list_items):nth-child(2):before
-      content none
 
 #button_checkbox:checked ~ nav
   animation-name expand_navigation
@@ -322,11 +320,11 @@ header
     0%
       transform translate(0%, -100%)
     100%
-      transform translate(0%, 25%)
+      transform translate(0%, calc(0%+var(--base-size)))
 
   @keyframes fold_navigation
     0%
-      transform translate(0%, 25%)
+      transform translate(0%, calc(0%+var(--base-size)))
     100%
       transform translate(0%, -100%)
 
