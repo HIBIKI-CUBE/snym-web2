@@ -56,7 +56,7 @@
     <Hero />
     <article>
       <h3>タイトル</h3>
-      <h2>PREDATOR AND WRECK 捕食者と崩壊</h2>
+      <h1>PREDATOR AND WRECK 捕食者と崩壊</h1>
       <Frame title="お知らせ">
         <p>
           {#await promiseContent then content}
@@ -394,6 +394,9 @@
   article
     padding 0 calc((100vw - var(--article-width)) / 2)
     width var(--article-width)
+  
+  h1
+    font-size 1.8em
   
   .switch_wrapper
     position: relative
