@@ -197,7 +197,7 @@
                                 })()}`
                             )
                             .join('')
-                        ).replaceAll('n', '')}
+                        ).replace(/n/g, '')}
                       </time>
                     </td>
                     <td>
