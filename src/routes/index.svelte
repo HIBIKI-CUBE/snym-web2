@@ -26,11 +26,23 @@
   import Member from '../components/member.svelte';
   import { elements } from '../stores/elements';
   import dateFormat from 'dateformat';
+  import { dev } from '$app/env';
 
   export let promiseContent, promiseHistory;
 </script>
 
 <svelte:head>
+  {#if !dev}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRG67B8PR7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-NRG67B8PR7');
+    </script>
+  {/if}
   <meta
     name="description"
     content="SFホラーゲーム、PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの公式Webサイト。東京電機大学の学生チームSnym(スナイム)が開発。Nintendo Switchにて9/16より販売開始"
@@ -57,13 +69,15 @@
     <article>
       <h3>タイトル</h3>
       <h1>PREDATOR AND WRECK 捕食者と崩壊</h1>
-      <Frame title="お知らせ">
-        <p>
-          {#await promiseContent then content}
-            <Line content={content.info} mdMode />
-          {/await}
-        </p>
-      </Frame>
+      {#await promiseContent then content}
+        {#if content.info}
+          <Frame title="お知らせ">
+            <p>
+              <Line content={content.info} mdMode />
+            </p>
+          </Frame>
+        {/if}
+      {/await}
       <div class="flex-container">
         <Frame title="あらすじ" liquid id="story" bind:element={$elements.story}>
           {#await promiseContent then content}
