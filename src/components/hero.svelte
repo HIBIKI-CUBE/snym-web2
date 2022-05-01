@@ -1,6 +1,7 @@
 <script lang="ts">
   import Picture from '../components/picture.svelte';
   import { onMount } from 'svelte';
+  import { status } from '../stores/status';
 
   let commandsCount = 0;
 
@@ -114,6 +115,7 @@
 
     function startGaming() {
       if (++commandsCount == command.length) {
+        $status.gaming = true
         requestAnimationFrame(gaming);
         heroElement.classList.add('gaming');
       }

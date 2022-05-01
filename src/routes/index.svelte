@@ -401,7 +401,7 @@
   :global(td time:not([data-notext]):after)
     content ':'
     margin-left 0.5ch
-
+  
   main
     margin-top var(--base-size)
     width 100vw
@@ -416,6 +416,8 @@
   .switch_wrapper
     position: relative
     left: calc((100vw - var(--article-width)) / 2 * -1)
+    width: 100vw
+    overflow-x: hidden
 
   .members
     flex-direction row
