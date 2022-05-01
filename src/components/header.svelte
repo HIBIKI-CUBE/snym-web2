@@ -193,14 +193,6 @@ nav
   animation-timing-function ease-out
   animation-fill-mode both
 
-  .title
-    margin 0
-    line-height calc(var(--base-size) / 2)
-    font-weight normal
-    @media screen and (orientation: portrait)
-      flex 0 0 100vw
-      line-height var(--base-size)
-
 header
   :global(.list_items)
     display block
