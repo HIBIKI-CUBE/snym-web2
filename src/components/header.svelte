@@ -63,9 +63,6 @@
     </svg>
   </label>
   <nav>
-    <label for="button_checkbox" class="list_items ">
-      閉じる
-    </label>
     {#each targets as target}
       <InPageLink
         class="list_items"
@@ -75,6 +72,9 @@
         {target.label}
       </InPageLink>
     {/each}
+    <label for="button_checkbox" class="list_items close">
+      閉じる
+    </label>
   </nav>
 </header>
 
