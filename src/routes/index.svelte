@@ -33,6 +33,7 @@
     content="SFホラーゲーム、PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの公式Webサイト。東京電機大学の学生チームSnym(スナイム)が開発。Nintendo Switchにて9/16より販売開始"
   />
   <title>PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レック : Snym</title>
+  <meta name="theme-color" content="#646464" />
   <style>
     html,
     body {
