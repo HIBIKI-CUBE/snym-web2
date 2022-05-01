@@ -109,7 +109,7 @@
 
       .display
         width: $display_width
-        aspect-ratio: 16/9
+        height: $display_width / 16 * 9
         background-color: #2d2d2d
         @media (prefers-color-scheme: light)
           background-color: #ebebeb
