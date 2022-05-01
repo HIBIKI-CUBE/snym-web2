@@ -36,13 +36,8 @@
 
 <div class="switch" class:open class:switch_and_play>
   <div class="joy-con-container">
-    <div class="joy-con-animation L">
-      <JoyCon L />
-    </div>
-
-    <div class="joy-con-animation R">
-      <JoyCon R />
-    </div>
+    <JoyCon L {switch_and_play} />
+    <JoyCon R {switch_and_play} />
   </div>
 
   <a
@@ -79,15 +74,14 @@
 </div>
 
 <style lang="stylus">
+  $body_width = 65.25vw
+  $display_width = $body_width * 0.881
+  $icon_width = $display_width * 256 /1280
   .switch
     position: relative;
-    component_width = 90vw
-    left: ((100vw - component_width) / 2)
-    width component_width
-    body_width = 72.5%;
-    display_width = 88%;
-    --switch-width: (component_width * body_width * display_width / 100 / 100)
-    --icon-width: calc(var(--switch-width) * 256/1280)
+    left: ((100vw - $body_width) / 2)
+    width $body_width
+    --switch-width: $display_width
     color #7f5
     @media (prefers-color-scheme: light)
       a
@@ -98,45 +92,30 @@
     z-index: 2
 
     .joy-con-container
-        width: 100%
-        display: flex
-        justify-content space-between
-      
-      .joy-con-animation
-        width 15%
-        opacity 0
-        transform: translateY(-200%)
-        transition: transform calc(56s/60) cubic-bezier(0.16, 1, 0.3, 1), opacity calc(14s/60) cubic-bezier(0.16, 1, 0.3, 1)
-
-        &.R
-          transition-delay: calc(5s/60)
-
-
-    &.switch_and_play .joy-con-animation
-      opacity 1
-      transform: translateY(0vh)
+      width: 100%
+      display: flex
+      justify-content space-between
 
     .body
-      width: body_width
-      height: 100%
-      position: absolute;
+      width: $body_width
+      height: (($body_width / 1042) * 601)
+      position: relative;
       border-radius: 5px
-      top: 0
-      left: ((100% - body_width) / 2);
       background-color: #050505;
       display: flex;
       justify-content: center
       align-items: center
+      margin: 0 auto
 
       .display
-        width: 88%;
+        width: $display_width
         aspect-ratio: 16/9
         background-color: #2d2d2d
         @media (prefers-color-scheme: light)
           background-color: #ebebeb
         text-align: center
         position: relative
-        padding-top: calc(var(--switch-width) * 194/1280 - (var(--icon-width) * (1.27 - 1)))
+        padding-top: (($display_width * 194/1280) - ($icon_width * 0.27))
         box-sizing: border-box
 
   .icons
@@ -144,7 +123,7 @@
     overflow-x: scroll
     -ms-overflow-style: none
     scrollbar-width: none
-    padding: calc(var(--icon-width) * (1.27 - 1) / 2) calc(var(--switch-width) * 105.5/1280)
+    padding: (($icon_width * 0.27) / 2) ($display_width * 105.5/1280)
 
     &::-webkit-scrollbar
       display: none
@@ -163,18 +142,18 @@
       left: (30/1280 * 100%)
 
   .switch_icon
-    width: var(--icon-width)
-    height: var(--icon-width)
+    --icon_width: $icon_width
+    width: $icon_width
+    height: $icon_width
     background-color: #888
     border: solid 0px #2d2d2d
     @media (prefers-color-scheme: light)
       border-color: #ebebeb
-    border-width: calc(0.02 * var(--icon-width)) 0px
-    border-radius: calc(0.02 * var(--icon-width))
+    border-width: (0.02 * $icon_width) 0px
+    border-radius: (0.02 * $icon_width)
     flex-shrink: 0
     position: relative
-    margin-top: calc(0.02 * var(--icon-width))
-    margin-bottom: calc(0.02 * var(--icon-width))
+    margin: (0.02 * $icon_width) 0
 
     &:after
       content: ""
@@ -182,27 +161,27 @@
       width: 100%
       height: 100%
       box-sizing: border-box
-      border: solid calc(0.02 * var(--icon-width)) #2d2d2d
+      border: solid (0.02 * $icon_width) #2d2d2d
       @media (prefers-color-scheme: light)
         border-color: #ebebeb
 
     &.active
-      border-width: calc(0.02 * var(--icon-width))
+      border-width: (0.02 * $icon_width)
       animation: .5s cubic-bezier(.5,0,.8,1) infinite alternate switch_blink
       z-index: 10
       @media (prefers-color-scheme: light)
         animation-name: switch_blink-light
-        box-shadow: 0 calc(0.01 * var(--icon-width)) 1px #ccc
+        box-shadow: 0 (0.01 * $icon_width) 1px #ccc
 
     &.new
       opacity: 0
 
       &~.switch_icon
-        transform: translate(calc(-0.02 * var(--icon-width) - var(--icon-width)), 0px)
-        margin-right: calc(0.02 * var(--icon-width))
+        transform: translate(calc(-0.02 * var(--icon_width) - var(--icon_width)), 0px)
+        margin-right: (0.02 * $icon_width)
         .switch_and_play &
-          transform: translate(calc(-0.02 * var(--icon-width) - var(--icon-width)), 0px)
-          margin-right: calc(0.02 * var(--icon-width))
+          transform: translate(calc(-0.02 * var(--icon_width) - var(--icon_width)), 0px)
+          margin-right: (0.02 * $icon_width)
           animation: calc(28s/60) ease forwards calc(28s/60) switch_slide
 
       .switch_and_play &
@@ -211,11 +190,12 @@
           animation: calc(28s/60) ease forwards calc(28s/60) switch_add, .5s cubic-bezier(.5,0,.8,1) infinite alternate calc(28s/60) switch_blink-light
 
     :global(img)
-      width: calc(100% - 0.04 * var(--icon-width))
-      height: calc(100% - 0.04 * var(--icon-width))
+      --icon_width: $icon_width
+      width: calc(100% - (0.04 * var(--icon_width)))
+      height: calc(100% - (0.04 * var(--icon_width)))
       position: absolute
-      top: calc(0.02 * var(--icon-width))
-      left: calc(0.02 * var(--icon-width))
+      top: (0.02 * $icon_width)
+      left: (0.02 * $icon_width)
       border: none
       .switch_and_play &:global(.switch_real)
         animation: calc(28s/60) ease forwards calc(28s/60) switch_fade
@@ -247,7 +227,7 @@
 
 @keyframes switch_slide{
   0%{
-    transform: translate(calc(-0.02 * var(--icon-width) - var(--icon-width)), 0px)
+    transform: translate(calc(-0.02 * var(--icon_width) - var(--icon_width)), 0px)
   }
   42.85%, 100%{
     transform: translate(calc(-0.02 * 0vw - 0vw), 0px)
