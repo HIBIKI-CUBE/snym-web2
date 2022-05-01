@@ -67,7 +67,7 @@
   <section id="WORKS">
     <Hero />
     <article>
-      <h3>タイトル</h3>
+      <div class="title">タイトル</div>
       <h1>PREDATOR AND WRECK 捕食者と崩壊</h1>
       {#await promiseContent then content}
         {#if content.info}
@@ -401,6 +401,10 @@
   :global(td time:not([data-notext]):after)
     content ':'
     margin-left 0.5ch
+  
+  .title
+    font-weight: bold
+    font-size: 1.17em
   
   main
     margin-top var(--base-size)
