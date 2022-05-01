@@ -1,19 +1,3 @@
-<script lang="ts" context="module">
-  /** @type {import('index.svelte').Load} */
-  export async function load({ fetch }) {
-    const responseContents = await fetch('/contents');
-    const responseHistory = await fetch('/history');
-
-    return {
-      status: responseContents.status && responseHistory.status,
-      props: {
-        promiseContent: responseContents.ok && (await responseContents.json()),
-        promiseHistory: responseHistory.ok && (await responseHistory.json())
-      }
-    };
-  }
-</script>
-
 <script lang="ts">
   import Line from '../components/line.svelte';
   import Frame from '../components/frame.svelte';
@@ -28,7 +12,8 @@
   import dateFormat from 'dateformat';
   import { dev } from '$app/env';
 
-  export let promiseContent, promiseHistory;
+  const promiseContent = (async () => (await fetch('/contents')).json())();
+  const promiseHistory = (async () => (await fetch('/history')).json())();
 </script>
 
 <svelte:head>
