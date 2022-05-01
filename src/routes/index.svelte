@@ -79,12 +79,12 @@
             <tr>
               <td>ジャンル</td>
               <td>
-                <Line content="一人称, SF, ホラー" />
+                <Line content="ホラー, ステルス, SF, 一人称" />
               </td>
             </tr>
             <tr>
               <td>プレイ時間</td>
-              <td>約3時間</td>
+              <td>約2時間</td>
             </tr>
             <tr>
               <td>リリース日</td>
