@@ -462,6 +462,7 @@
   height: 101%
   opacity: 0
   transform: translate(var(--offset), -200%)
+  will-change: transform, opacity
   &.switch_and_play
     opacity 1
     transform: translate(var(--offset), 0vh)

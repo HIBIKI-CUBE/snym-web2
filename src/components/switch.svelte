@@ -154,6 +154,7 @@
     flex-shrink: 0
     position: relative
     margin: (0.02 * $icon_width) 0
+    will-change: transform, opacity
 
     &:after
       content: ""
