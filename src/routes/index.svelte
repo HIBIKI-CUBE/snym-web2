@@ -54,7 +54,7 @@
     <Hero />
     <article>
       <div class="title">タイトル</div>
-      <h1>PREDATOR AND WRECK 捕食者と崩壊</h1>
+      <h1><Line content="PREDATOR  AND  WRECK  捕食者 と 崩壊" /></h1>
       {#await promiseContent then content}
         {#if content.info}
           <Frame title="お知らせ">
