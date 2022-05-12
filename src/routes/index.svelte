@@ -217,6 +217,15 @@
           </Frame>
         </div>
       </section>
+      <Frame title="2次利用ガイドライン">
+        {#await promiseContent then content}
+          {#each content.guideLine.split('\n') as line}
+            <p>
+              <Line content={line} mdMode />
+            </p>
+          {/each}
+        {/await}
+      </Frame>
       <Frame title="連絡先">
         {#await promiseContent then content}
           {#each content.contact.split('\n') as line}
