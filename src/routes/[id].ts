@@ -17,6 +17,8 @@ export async function GET({ params }) : Promise<any> {
     }
   }
 
+  if (params.id == 'favicon.ico') return;
+
   return client
     .get({
       endpoint: params.id,
