@@ -1,9 +1,10 @@
 <script lang="ts">
+  export let year: number = 2021;
 </script>
 
 <footer>
   <section class="copyright">
-    <div>&copy; 2021 <span class="break-scope">HIBIKI CUBE,</span> Snym</div>
+    <div>&copy; {year} <span class="break-scope">HIBIKI CUBE,</span> Snym</div>
   </section>
   <section>
     <div>

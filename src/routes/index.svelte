@@ -302,7 +302,9 @@
     </article>
   </section>
 </main>
-<Footer />
+{#await promiseContent then content}
+  <Footer year={new Date(content.updatedAt).getFullYear()} />
+{/await}
 
 <style lang="stylus">
   :root
