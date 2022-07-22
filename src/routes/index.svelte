@@ -56,7 +56,7 @@
       <div class="title">タイトル</div>
       <h1><Line content="PREDATOR  AND  WRECK  捕食者 と 崩壊" /></h1>
       {#await promiseContent then content}
-        {#if content.info}
+        {#if content.info && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
           <Frame title="お知らせ">
             <p>
               <Line content={content.info} mdMode />
