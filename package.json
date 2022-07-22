@@ -2,9 +2,9 @@
   "name": "snym-web2",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev --host",
-    "build": "svelte-kit build",
-    "preview": "svelte-kit preview --host",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
@@ -12,28 +12,29 @@
     "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install"
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "^1.0.0-next.50",
-    "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "eslint": "^7.32.0",
+    "@sveltejs/adapter-vercel": "1.0.0-next.65",
+    "@sveltejs/kit": "1.0.0-next.390",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-svelte3": "^3.4.1",
-    "prettier": "^2.6.2",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "pnpm": "^7.5.2",
+    "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
-    "stylus": "^0.57.0",
-    "svelte": "^3.47.0",
-    "svelte-check": "^2.7.0",
+    "stylus": "^0.58.1",
+    "svelte": "^3.49.0",
+    "svelte-check": "^2.8.0",
     "svelte-intersection-observer": "^0.10.0",
-    "svelte-preprocess": "^4.10.6",
+    "svelte-preprocess": "^4.10.7",
     "tslib": "^2.4.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.7.4"
   },
   "type": "module",
   "dependencies": {
-    "@splidejs/svelte-splide": "^0.2.1",
+    "@splidejs/svelte-splide": "^0.2.5",
     "dateformat": "^5.0.3",
     "microcms-js-sdk": "^2.0.0",
-    "pnpm": "^6.32.11"
+    "vite": "^3.0.2"
   }
 }

@@ -6,3 +6,4 @@ node_modules
 /package
 .env
 .netlify/
+.vercel/

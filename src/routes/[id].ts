@@ -8,7 +8,7 @@ const client = createClient({
 });
 
 /** @type {import('./[id]').RequestHandler} */
-export async function get({ params }) {
+export async function GET({ params }) : Promise<any> {
   // `params.id` comes from [id].js
 
   if (offline) {
