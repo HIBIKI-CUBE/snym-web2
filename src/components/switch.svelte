@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Picture from '../components/picture.svelte';
-
+  import { _ } from 'svelte-i18n';
   import JoyCon from './joy-con.svelte';
 
   let anchor, body;
@@ -41,7 +41,7 @@
   </div>
 
   <a
-    href="https://store-jp.nintendo.com/list/software/70010000043070.html"
+    href={$_('switch_link')}
     class="switch_home-anchor"
     bind:this={anchor}
   >
@@ -54,12 +54,12 @@
             {#each ['switch_real', 'switch_phantom'] as className}
               <Picture
                 imgClass={className}
-                alt="SnymのPredator And Wreakのアイコン画像"
+                alt={$_('switch_alt')}
                 imageTypes={['webp', 'jpg']}
                 sizes="25vw"
                 sizeSet={iconSizeSet}
                 fallbackSize={iconSizeSet[0]}
-                srcName="switch_icon"
+                srcName={$_('switch_src')}
               />
             {/each}
           </div>
@@ -67,7 +67,7 @@
             <div class="switch_icon" />
           {/each}
         </div>
-        <h2>My Nintendo Storeはこちら</h2>
+        <h2>{$_('go_to_nintendo_store')}</h2>
       </div>
     </div>
   </a>

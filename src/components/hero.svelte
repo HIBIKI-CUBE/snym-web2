@@ -2,6 +2,7 @@
   import Picture from '../components/picture.svelte';
   import { onMount } from 'svelte';
   import { status } from '../stores/status';
+  import { _ } from 'svelte-i18n';
 
   let commandsCount = 0;
 
@@ -183,10 +184,10 @@
     class="hero_picture {autoAnimate ? 'isAnimating' : ''}"
     imgId="hero_img"
     imgClass="hero_img"
-    alt="SnymのPredator And Wreakの画像"
+    alt={$_('hero_alt')}
     imageTypes={['webp', 'png']}
     sizes="70vw"
-    srcName="paw_hero-transparent"
+    srcName={$_('hero_src')}
     loadLazy={false}
   />
 </section>
