@@ -1,6 +1,6 @@
 <script lang="ts">
   import { elements } from '../stores/elements';
-  export let target: HTMLElement | null,
+  export let target: HTMLElement | number,
     beforeScroll: Function | null = () => {},
     afterScroll: Function | null = () => {};
 
@@ -18,11 +18,11 @@
         time,
         time,
         window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
-        target
-          ? target.getBoundingClientRect().top -
+        typeof target == 'number'
+          ? target
+          : target.getBoundingClientRect().top -
               parseFloat(getComputedStyle(target).marginTop) -
               $elements.header.clientHeight
-          : 0
       )
     );
   }
