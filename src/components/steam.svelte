@@ -90,4 +90,5 @@
     margin: 0
     width: 100%
     font-size: calc(2.5vw * 1.5)
+    text-decoration: underline
 </style>
