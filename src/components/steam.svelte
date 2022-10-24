@@ -9,7 +9,7 @@
   let options = {
     type: 'loop',
     easing: 'cubic-bezier(0.65, 0, 0.35, 1)',
-    drag: 'free',
+    drag: 'free' as 'free',
     snap: true,
     autoplay: true,
     speed: 800,
