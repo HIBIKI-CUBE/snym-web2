@@ -20,7 +20,7 @@
 
   init({
     fallbackLocale: 'ja',
-    initialLocale: getLocaleFromNavigator(),
+    initialLocale: getLocaleFromNavigator()
   });
 
   const promiseContent = (async () => (await fetch('/contents')).json())();
@@ -39,10 +39,7 @@
       gtag('config', 'G-NRG67B8PR7');
     </script>
   {/if}
-  <meta
-    name="description"
-    content={$_('head_description')}
-  />
+  <meta name="description" content={$_('head_description')} />
   <title>{$_('head_title')}</title>
   <meta name="theme-color" content="#646464" />
   <style>
@@ -67,10 +64,10 @@
       <div class="title">{$_('title')}</div>
       <h1><Line content={$_('game_title')} /></h1>
       {#await promiseContent then content}
-        {#if content.info && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
-          <Frame title="{$_('info')}">
+        {#if ($locale.match(/en/) && content.info_en || content.info) && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
+          <Frame title={$_('info')}>
             <p>
-              <Line content={$locale.match(/en/) ? content.info_en : content.info} mdMode />
+              <Line content={$locale.match(/en/) && content.info_en ? content.info_en : content.info} mdMode spaceSplit={!($locale.match(/en/) && content.info_en)} />
             </p>
           </Frame>
         {/if}
@@ -78,9 +75,9 @@
       <div class="flex-container">
         <Frame title={$_('story')} liquid id="story" bind:element={$elements.story}>
           {#await promiseContent then content}
-            {#each ($locale.match(/en/) ? content.story_en : content.story).split('\n') as line}
+            {#each ($locale.match(/en/) && content.story_en ? content.story_en : content.story).split('\n') as line}
               <p>
-                <Line content={line} mdMode />
+                <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.story_en)} />
               </p>
             {/each}
           {/await}
@@ -121,10 +118,7 @@
       </div>
       <Frame title={$_('trailer')} flex id="trailer" bind:element={$elements.trailer}>
         {#await promiseContent then content}
-          <Youtube
-            id={content.youtubeID}
-            title={$_('trailer_title')}
-          />
+          <Youtube id={$locale.match(/en/) && content.youtubeID_en ? content.youtubeID_en : content.youtubeID} title={$_('trailer_title')} />
         {/await}
       </Frame>
       <section class="materials">
@@ -171,9 +165,9 @@
         <div class="flex-container">
           <Frame title={$_('about')}>
             {#await promiseContent then content}
-              {#each ($locale.match(/en/) ? content.outline_en : content.outline).split('\n') as line}
+              {#each ($locale.match(/en/) && content.outline_en ? content.outline_en : content.outline).split('\n') as line}
                 <p>
-                  <Line content={line} mdMode />
+                  <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.outline_en)} />
                 </p>
               {/each}
             {/await}
@@ -191,7 +185,10 @@
                           entry.date,
                           [
                             { check: 'yyyy', format: `yyyy${$locale.match(/en/) ? '/' : '年'}` },
-                            { check: 'mm', format: `m${$locale.match(/en/) ? (entry.showDay ? '/' : '') : '月'}` },
+                            {
+                              check: 'mm',
+                              format: `m${$locale.match(/en/) ? (entry.showDay ? '/' : '') : '月'}`
+                            },
                             { check: 'dd', format: `d${$locale.match(/ja/) ? '日' : ''}` }
                           ]
                             .map(
@@ -215,9 +212,11 @@
                     <td>
                       {#if $locale.match(/en/) ? entry.link_en : entry.link}
                         <a href={$locale.match(/en/) ? entry.link_en : entry.link}>
-                          {$locale.match(/en/) && entry.content_en ? entry.content_en : entry.content}
+                          {$locale.match(/en/) && entry.content_en
+                            ? entry.content_en
+                            : entry.content}
                         </a>
-                        {:else}
+                      {:else}
                         {$locale.match(/en/) && entry.content_en ? entry.content_en : entry.content}
                       {/if}
                     </td>
@@ -228,20 +227,20 @@
           </Frame>
         </div>
       </section>
-      <Frame title="{$_('guidelines')}">
+      <Frame title={$_('guidelines')}>
         {#await promiseContent then content}
-          {#each ($locale.match(/en/) ? content.guideLine_en : content.guideLine).split('\n') as line}
+          {#each ($locale.match(/en/) && content.guideLine_en ? content.guideLine_en : content.guideLine).split('\n') as line}
             <p>
-              <Line content={line} mdMode />
+              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.guideLine_en)} />
             </p>
           {/each}
         {/await}
       </Frame>
-      <Frame title="{$_('contacts')}">
+      <Frame title={$_('contacts')}>
         {#await promiseContent then content}
-          {#each ($locale.match(/en/) ? content.contact_en : content.contact).split('\n') as line}
+          {#each ($locale.match(/en/) && content.contact_en ? content.contact_en : content.contact).split('\n') as line}
             <p>
-              <Line content={line} mdMode />
+              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.contact_en)} />
             </p>
           {/each}
         {/await}
@@ -255,46 +254,22 @@
         <h3>Snym</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member
-              name="SHOYU"
-              id="shoyu"
-              post={$_('shoyu_posts')}
-              twitter="53kcal4"
-            />
+            <Member name="SHOYU" id="shoyu" post={$_('shoyu_posts')} twitter="53kcal4" />
           </li>
           <li class="flex_half-on_pc">
-            <Member
-              name="NEO"
-              id="neo"
-              post={$_('neo_posts')}
-              twitter="neo_97m"
-            />
+            <Member name="NEO" id="neo" post={$_('neo_posts')} twitter="neo_97m" />
           </li>
           <li class="flex_half-on_pc">
-            <Member
-              name="I_D"
-              id="iida"
-              post={$_('id_posts')}
-              twitter="GoodPaddyField7"
-            />
+            <Member name="I_D" id="iida" post={$_('id_posts')} twitter="GoodPaddyField7" />
           </li>
           <li class="flex_half-on_pc">
-            <Member
-              name="OK_NO"
-              id="okno"
-              post={$_('okno_posts')}
-              twitter="OKNO38934114"
-            />
+            <Member name="OK_NO" id="okno" post={$_('okno_posts')} twitter="OKNO38934114" />
           </li>
         </ul>
         <h3>{$_('collaborators')}</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member
-              name="NAMI"
-              post={$_('nami_posts')}
-              imageTypes={['webp', 'png']}
-            />
+            <Member name="NAMI" post={$_('nami_posts')} imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
@@ -307,11 +282,7 @@
             />
           </li>
           <li class="flex_half-on_pc flex-container main_member_id">
-            <Member
-              name="SIHYUN"
-              post={$_('sihyun_posts')}
-              imageTypes={['webp', 'png']}
-            />
+            <Member name="SIHYUN" post={$_('sihyun_posts')} imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
@@ -326,8 +297,12 @@
     </article>
   </section>
 </main>
-{#await promiseContent then content}
+{#await promiseContent}
+  <Footer />
+{:then content}
   <Footer year={new Date(content.updatedAt).getFullYear()} />
+{:catch error}
+  <Footer />
 {/await}
 
 <style lang="stylus">

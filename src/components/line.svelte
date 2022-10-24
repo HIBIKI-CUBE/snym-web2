@@ -6,6 +6,7 @@
   /** 半角スペースで分割した文字列(スペース２つで通常のスペースを表示) */
   export let content: string = '',
     mdMode = false,
+    spaceSplit = false,
     noLine = false;
 
   function processMd(input: string) {
@@ -23,12 +24,12 @@
 
   function splitDualSpace(input: string) {
     return (
-      $locale.match(/en/)
+      spaceSplit
         ? input
-        : input
           .replace(/\ \ /g, '\t ')
           .split(' ')
           .map((v) => v.replace(/\t/g, ' '))
+        : [input]
     );
   }
 </script>
