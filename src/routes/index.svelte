@@ -64,10 +64,14 @@
       <div class="title">{$_('title')}</div>
       <h1><Line content={$_('game_title')} /></h1>
       {#await promiseContent then content}
-        {#if ($locale.match(/en/) && content.info_en || content.info) && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
+        {#if (($locale.match(/en/) && content.info_en) || content.info) && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
           <Frame title={$_('info')}>
             <p>
-              <Line content={$locale.match(/en/) && content.info_en ? content.info_en : content.info} mdMode spaceSplit={!($locale.match(/en/) && content.info_en)} />
+              <Line
+                content={$locale.match(/en/) && content.info_en ? content.info_en : content.info}
+                mdMode
+                spaceSplit={!($locale.match(/en/) && content.info_en)}
+              />
             </p>
           </Frame>
         {/if}
@@ -77,7 +81,11 @@
           {#await promiseContent then content}
             {#each ($locale.match(/en/) && content.story_en ? content.story_en : content.story).split('\n') as line}
               <p>
-                <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.story_en)} />
+                <Line
+                  content={line}
+                  mdMode
+                  spaceSplit={!($locale.match(/en/) && content.story_en)}
+                />
               </p>
             {/each}
           {/await}
@@ -118,7 +126,12 @@
       </div>
       <Frame title={$_('trailer')} flex id="trailer" bind:element={$elements.trailer}>
         {#await promiseContent then content}
-          <Youtube id={$locale.match(/en/) && content.youtubeID_en ? content.youtubeID_en : content.youtubeID} title={$_('trailer_title')} />
+          <Youtube
+            id={$locale.match(/en/) && content.youtubeID_en
+              ? content.youtubeID_en
+              : content.youtubeID}
+            title={$_('trailer_title')}
+          />
         {/await}
       </Frame>
       <section class="materials">
@@ -167,7 +180,11 @@
             {#await promiseContent then content}
               {#each ($locale.match(/en/) && content.outline_en ? content.outline_en : content.outline).split('\n') as line}
                 <p>
-                  <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.outline_en)} />
+                  <Line
+                    content={line}
+                    mdMode
+                    spaceSplit={!($locale.match(/en/) && content.outline_en)}
+                  />
                 </p>
               {/each}
             {/await}
@@ -210,8 +227,8 @@
                       </time>
                     </td>
                     <td>
-                      {#if $locale.match(/en/) ? entry.link_en : entry.link}
-                        <a href={$locale.match(/en/) ? entry.link_en : entry.link}>
+                      {#if $locale.match(/en/) && entry.link_en ? entry.link_en : entry.link}
+                        <a href={$locale.match(/en/) && entry.link_en ? entry.link_en : entry.link}>
                           {$locale.match(/en/) && entry.content_en
                             ? entry.content_en
                             : entry.content}
@@ -231,7 +248,11 @@
         {#await promiseContent then content}
           {#each ($locale.match(/en/) && content.guideLine_en ? content.guideLine_en : content.guideLine).split('\n') as line}
             <p>
-              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.guideLine_en)} />
+              <Line
+                content={line}
+                mdMode
+                spaceSplit={!($locale.match(/en/) && content.guideLine_en)}
+              />
             </p>
           {/each}
         {/await}
@@ -240,7 +261,11 @@
         {#await promiseContent then content}
           {#each ($locale.match(/en/) && content.contact_en ? content.contact_en : content.contact).split('\n') as line}
             <p>
-              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.contact_en)} />
+              <Line
+                content={line}
+                mdMode
+                spaceSplit={!($locale.match(/en/) && content.contact_en)}
+              />
             </p>
           {/each}
         {/await}
