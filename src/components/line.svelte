@@ -1,12 +1,11 @@
 <script lang="ts">
   import { elements } from '../stores/elements';
   import InPageLink from './inPageLink.svelte';
-  import { locale } from 'svelte-i18n';
 
   /** 半角スペースで分割した文字列(スペース２つで通常のスペースを表示) */
   export let content: string = '',
     mdMode = false,
-    spaceSplit = false,
+    spaceSplit = true,
     noLine = false;
 
   function processMd(input: string) {
