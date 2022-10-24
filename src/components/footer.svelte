@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let year: number = 2021;
+  export let year: number = 2022;
 </script>
 
 <footer>
