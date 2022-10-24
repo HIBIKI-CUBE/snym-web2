@@ -3,35 +3,36 @@
   import InPageLink from './inPageLink.svelte';
   import { elements } from '../stores/elements';
   import { onMount } from 'svelte';
+  import { _, locale } from 'svelte-i18n';
 
   onMount(() => {
     setTimeout(() => (checkbox.checked = false), 1500);
   });
 
-  const targets = [
+  $: targets = [
     {
       id: 'story',
-      label: 'あらすじ'
+      label: $_('header_story')
     },
     {
       id: 'game_info',
-      label: 'ゲーム情報'
+      label: $_('header_game-info')
     },
     {
       id: 'buy',
-      label: '購入'
+      label: $_('header_buy')
     },
     {
       id: 'trailer',
-      label: 'トレーラー'
+      label: $_('header_trailer')
     },
     {
       id: 'team',
-      label: 'Snymとは'
+      label: $_('header_what_is_snym')
     },
     {
       id: 'member',
-      label: 'メンバー'
+      label: $_('header_members')
     }
   ];
 
@@ -39,15 +40,17 @@
 </script>
 
 <header bind:this={$elements.header}>
-  <Picture
-    imgClass="logo"
-    target="top"
-    title="クリックするとページの先頭に戻ります"
-    alt="Snym(スナイム)のPREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの画像"
-    imageTypes={['webp', 'png']}
-    sizes="11.5vh"
-    srcName="team_logo"
-  />
+  <InPageLink target={0} beforeScroll={() => (checkbox.checked = false)}>
+    <Picture
+      imgClass="logo"
+      target="top"
+      title={$_('header_logo_title')}
+      alt={$_('header_logo_alt')}
+      imageTypes={['webp', 'png']}
+      sizes="11.5vh"
+      srcName="team_logo"
+    />
+  </InPageLink>
   <input
     type="checkbox"
     class="ui_button button_checkbox"
@@ -56,7 +59,7 @@
     id="button_checkbox"
     bind:this={checkbox}
   />
-  <label for="button_checkbox" class="button" title="クリックするとナビゲーションを開閉できます">
+  <label for="button_checkbox" class="button" title={$_('header_button_title')}>
     <svg class="button_svg" viewBox="0 0 24 24" fill="white">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
@@ -72,8 +75,17 @@
         {target.label}
       </InPageLink>
     {/each}
+    <div
+      class="list_items"
+      on:click={() => {
+        $locale = $locale == 'ja' ? 'en' : 'ja';
+        checkbox.checked = false;
+      }}
+    >
+      {$_('switch_language')}
+    </div>
     <label for="button_checkbox" class="list_items close">
-      閉じる
+      {$_('header_close')}
     </label>
   </nav>
 </header>

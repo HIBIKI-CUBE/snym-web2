@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Splide, SplideSlide } from '@splidejs/svelte-splide';
   import Picture from '../components/picture.svelte';
-
   import '@splidejs/svelte-splide/css';
+  import { _ } from 'svelte-i18n';
 
   const sizeSet = [2000, 1750, 1500, 1250, 1000, 750, 500, 250];
   const imgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -23,14 +23,14 @@
   };
 </script>
 
-<a href="https://store.steampowered.com/app/1920210/PREDATOR_AND_WRECK/">
+<a href={$_('steam_link')}>
   <div class="display">
-    <Splide {options} aria-label="PREDATOR AND WRECK 捕食者と崩壊のスクリーンショット">
+    <Splide {options} aria-label={$_('steam_alt')}>
       {#each imgs as img}
         <SplideSlide>
           <Picture
             imgClass="slide_img"
-            alt="PREDATOR AND WRECK 捕食者と崩壊のスクリーンショット {img}"
+            alt="{$_('steam_img_alt')}{img}"
             imageTypes={['webp', 'jpg']}
             sizes="56vw"
             {sizeSet}
@@ -42,7 +42,7 @@
     </Splide>
   </div>
   <div class="stand" />
-  <h2 class="steam_text">Steamはこちら</h2>
+  <h2 class="steam_text">{$_('go_to_steam')}</h2>
 </a>
 
 <style lang="stylus">

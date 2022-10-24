@@ -11,6 +11,17 @@
   import { elements } from '../stores/elements';
   import dateFormat from 'dateformat';
   import { dev } from '$app/env';
+  import { addMessages, init, getLocaleFromNavigator, _, locale } from 'svelte-i18n';
+  import en from '../en.json';
+  import ja from '../ja.json';
+
+  addMessages('ja', ja);
+  addMessages('en', en);
+
+  init({
+    fallbackLocale: 'ja',
+    initialLocale: getLocaleFromNavigator()
+  });
 
   const promiseContent = (async () => (await fetch('/contents')).json())();
   const promiseHistory = (async () => (await fetch('/history')).json())();
@@ -28,11 +39,8 @@
       gtag('config', 'G-NRG67B8PR7');
     </script>
   {/if}
-  <meta
-    name="description"
-    content="SFホラーゲーム、PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レックの公式Webサイト。東京電機大学の学生チームSnym(スナイム)が開発。Nintendo Switchにて9/16より販売開始"
-  />
-  <title>PREDATOR AND WRECK 捕食者と崩壊 | プレデター・アンド・レック : Snym</title>
+  <meta name="description" content={$_('head_description')} />
+  <title>{$_('head_title')}</title>
   <meta name="theme-color" content="#646464" />
   <style>
     html,
@@ -53,50 +61,50 @@
   <section id="WORKS">
     <Hero />
     <article>
-      <div class="title">タイトル</div>
-      <h1><Line content="PREDATOR  AND  WRECK  捕食者 と 崩壊" /></h1>
+      <div class="title">{$_('title')}</div>
+      <h1><Line content={$_('game_title')} /></h1>
       {#await promiseContent then content}
-        {#if content.info && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
-          <Frame title="お知らせ">
+        {#if ($locale.match(/en/) && content.info_en || content.info) && (!content.infoDue || new Date(content.infoDue).getTime() >= new Date().getTime())}
+          <Frame title={$_('info')}>
             <p>
-              <Line content={content.info} mdMode />
+              <Line content={$locale.match(/en/) && content.info_en ? content.info_en : content.info} mdMode spaceSplit={!($locale.match(/en/) && content.info_en)} />
             </p>
           </Frame>
         {/if}
       {/await}
       <div class="flex-container">
-        <Frame title="あらすじ" liquid id="story" bind:element={$elements.story}>
+        <Frame title={$_('story')} liquid id="story" bind:element={$elements.story}>
           {#await promiseContent then content}
-            {#each content.story.split('\n') as line}
+            {#each ($locale.match(/en/) && content.story_en ? content.story_en : content.story).split('\n') as line}
               <p>
-                <Line content={line} mdMode />
+                <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.story_en)} />
               </p>
             {/each}
           {/await}
         </Frame>
-        <Frame title="ゲーム情報" rigid flex id="game_info" bind:element={$elements.game_info}>
+        <Frame title={$_('game-info')} rigid flex id="game_info" bind:element={$elements.game_info}>
           <table class="content">
             <tr>
-              <td>ジャンル</td>
+              <td>{$_('genre')}</td>
               <td>
-                <Line content="ホラー, ステルス, SF, 一人称" />
+                <Line content={$_('game_genre')} />
               </td>
             </tr>
             <tr>
-              <td>プレイ時間</td>
-              <td>約2時間</td>
+              <td>{$_('play-time')}</td>
+              <td>{$_('game_play-time')}</td>
             </tr>
             <tr>
-              <td>リリース日</td>
-              <td>2021年9月16日</td>
+              <td>{$_('release-date')}</td>
+              <td>{$_('game_release-date')}</td>
             </tr>
             <tr>
-              <td>対応ハード</td>
-              <td>PC, Nintendo Switch</td>
+              <td>{$_('supported-hardwares')}</td>
+              <td>{$_('game_supported-hardwares')}</td>
             </tr>
             <tr>
-              <td>開発元</td>
-              <td>Snym</td>
+              <td>{$_('developer')}</td>
+              <td>{$_('game_developer')}</td>
             </tr>
           </table>
         </Frame>
@@ -108,22 +116,19 @@
       <div class="switch_wrapper">
         <Switch />
       </div>
-      <Frame title="トレーラー映像" flex id="trailer" bind:element={$elements.trailer}>
+      <Frame title={$_('trailer')} flex id="trailer" bind:element={$elements.trailer}>
         {#await promiseContent then content}
-          <Youtube
-            id={content.youtubeID}
-            title="PREDATOR AND WRECK、Trial版のトレーラー映像の埋め込み"
-          />
+          <Youtube id={$locale.match(/en/) && content.youtubeID_en ? content.youtubeID_en : content.youtubeID} title={$_('trailer_title')} />
         {/await}
       </Frame>
       <section class="materials">
         <details>
           <summary>
-            <h3>使用素材・環境</h3>
+            <h3>{$_('materials_and_environment')}</h3>
           </summary>
           <div class="flex-container">
             <div class="flex_half-on_pc">
-              <h4>環境</h4>
+              <h4>{$_('environment')}</h4>
               <ul>
                 <li>Unity 2019.1.14f1</li>
                 <li>GitHub</li>
@@ -131,7 +136,7 @@
               </ul>
             </div>
             <div class="flex_half-on_pc">
-              <h4>Unityアセット</h4>
+              <h4>{$_('unity-assets')}</h4>
               <ul>
                 <li>True Horror - Crawler</li>
                 <li>Sci-Fi Facility</li>
@@ -141,7 +146,7 @@
                 <li>TextMesh Pro</li>
                 <li>ATM</li>
               </ul>
-              <h4>その他素材</h4>
+              <h4>{$_('other_materials')}</h4>
               <ul>
                 <li>icooon7admin</li>
                 <li>
@@ -149,25 +154,25 @@
                     >Outlines a 3D model with 2 passes.</a
                   >
                 </li>
-                <li>稿屋 隆 「泥沼を歩く」</li>
+                <li>{$_('book')}</li>
               </ul>
             </div>
           </div>
         </details>
       </section>
       <section bind:this={$elements.team}>
-        <h3 id="team">チームSnym（スナイム）とは</h3>
+        <h3 id="team">{$_('what_is_snym')}</h3>
         <div class="flex-container">
-          <Frame title="概要">
+          <Frame title={$_('about')}>
             {#await promiseContent then content}
-              {#each content.outline.split('\n') as line}
+              {#each ($locale.match(/en/) && content.outline_en ? content.outline_en : content.outline).split('\n') as line}
                 <p>
-                  <Line content={line} mdMode />
+                  <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.outline_en)} />
                 </p>
               {/each}
             {/await}
           </Frame>
-          <Frame title="来歴" flex>
+          <Frame title={$_('history')} flex>
             <table>
               {#await promiseHistory then history}
                 {#each history as entry, i}
@@ -179,9 +184,12 @@
                         {dateFormat(
                           entry.date,
                           [
-                            { check: 'yyyy', format: 'yyyy年' },
-                            { check: 'mm', format: 'm月' },
-                            { check: 'dd', format: 'd日' }
+                            { check: 'yyyy', format: `yyyy${$locale.match(/en/) ? '/' : '年'}` },
+                            {
+                              check: 'mm',
+                              format: `m${$locale.match(/en/) ? (entry.showDay ? '/' : '') : '月'}`
+                            },
+                            { check: 'dd', format: `d${$locale.match(/ja/) ? '日' : ''}` }
                           ]
                             .map(
                               (v) =>
@@ -202,12 +210,14 @@
                       </time>
                     </td>
                     <td>
-                      {#if entry.link}
-                        <a href={entry.link}>
-                          {entry.content}
+                      {#if $locale.match(/en/) ? entry.link_en : entry.link}
+                        <a href={$locale.match(/en/) ? entry.link_en : entry.link}>
+                          {$locale.match(/en/) && entry.content_en
+                            ? entry.content_en
+                            : entry.content}
                         </a>
                       {:else}
-                        {entry.content}
+                        {$locale.match(/en/) && entry.content_en ? entry.content_en : entry.content}
                       {/if}
                     </td>
                   </tr>
@@ -217,20 +227,20 @@
           </Frame>
         </div>
       </section>
-      <Frame title="2次利用ガイドライン">
+      <Frame title={$_('guidelines')}>
         {#await promiseContent then content}
-          {#each content.guideLine.split('\n') as line}
+          {#each ($locale.match(/en/) && content.guideLine_en ? content.guideLine_en : content.guideLine).split('\n') as line}
             <p>
-              <Line content={line} mdMode />
+              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.guideLine_en)} />
             </p>
           {/each}
         {/await}
       </Frame>
-      <Frame title="連絡先">
+      <Frame title={$_('contacts')}>
         {#await promiseContent then content}
-          {#each content.contact.split('\n') as line}
+          {#each ($locale.match(/en/) && content.contact_en ? content.contact_en : content.contact).split('\n') as line}
             <p>
-              <Line content={line} mdMode />
+              <Line content={line} mdMode spaceSplit={!($locale.match(/en/) && content.contact_en)} />
             </p>
           {/each}
         {/await}
@@ -239,61 +249,46 @@
   </section>
   <section>
     <article bind:this={$elements.member}>
-      <h2 class="main_member_title" id="member">制作者一覧</h2>
+      <h2 class="main_member_title" id="member">{$_('members')}</h2>
       <section>
         <h3>Snym</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member
-              name="SHOYU"
-              id="shoyu"
-              post="チームリーダー ・ ディレクター ・ プログラマー"
-              twitter="53kcal4"
-            />
+            <Member name="SHOYU" id="shoyu" post={$_('shoyu_posts')} twitter="53kcal4" />
           </li>
           <li class="flex_half-on_pc">
-            <Member name="NEO" id="neo" post="マップ設計・サウンドクリエイター" twitter="neo_97m" />
+            <Member name="NEO" id="neo" post={$_('neo_posts')} twitter="neo_97m" />
           </li>
           <li class="flex_half-on_pc">
-            <Member
-              name="I_D"
-              id="iida"
-              post="プログラマー・テクニカルディレクター"
-              twitter="GoodPaddyField7"
-            />
+            <Member name="I_D" id="iida" post={$_('id_posts')} twitter="GoodPaddyField7" />
           </li>
           <li class="flex_half-on_pc">
-            <Member
-              name="OK_NO"
-              id="okno"
-              post="ギミックプログラマー・デバッガー"
-              twitter="OKNO38934114"
-            />
+            <Member name="OK_NO" id="okno" post={$_('okno_posts')} twitter="OKNO38934114" />
           </li>
         </ul>
-        <h3>制作協力</h3>
+        <h3>{$_('collaborators')}</h3>
         <ul class="flex-container members">
           <li class="flex_half-on_pc">
-            <Member name="NAMI" post="デバッガー" imageTypes={['webp', 'png']} />
+            <Member name="NAMI" post={$_('nami_posts')} imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
               name="AMU"
               id="ayumu"
-              post="デザイナー"
+              post={$_('amu_posts')}
               twitter="Amu_dsgn"
               sizeSet={[24, 48, 72]}
               imageTypes={['webp', 'png']}
             />
           </li>
           <li class="flex_half-on_pc flex-container main_member_id">
-            <Member name="SIHYUN" post="サウンドクリエイター" imageTypes={['webp', 'png']} />
+            <Member name="SIHYUN" post={$_('sihyun_posts')} imageTypes={['webp', 'png']} />
           </li>
           <li class="flex_half-on_pc">
             <Member
               name="HIBIKI CUBE"
               id="hibiki_cube"
-              post="Webクリエイター ・ アセットクリエイター"
+              post={$_('hibiki_posts')}
               twitter="hibiki_cube"
             />
           </li>
@@ -302,8 +297,12 @@
     </article>
   </section>
 </main>
-{#await promiseContent then content}
+{#await promiseContent}
+  <Footer />
+{:then content}
   <Footer year={new Date(content.updatedAt).getFullYear()} />
+{:catch error}
+  <Footer />
 {/await}
 
 <style lang="stylus">

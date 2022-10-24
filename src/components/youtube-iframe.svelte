@@ -1,9 +1,10 @@
 <script lang="ts">
   import IntersectionObserver from 'svelte-intersection-observer';
+  import { _ } from 'svelte-i18n';
 
   export let rootMargin = '30%',
     id: string,
-    title: string = 'YouTube動画の埋め込み';
+    title: string = $_('youtube_alt_default');
 
   let element;
   let intersecting = false;

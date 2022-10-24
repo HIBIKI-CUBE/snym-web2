@@ -1,6 +1,7 @@
 <script lang="ts">
   import Line from '../components/line.svelte';
   import Picture from '../components/picture.svelte';
+  import { _ } from 'svelte-i18n';
 
   export let name = '',
     id = '',
@@ -25,7 +26,7 @@
 {#if twitter}
   <a href="https://twitter.com/{twitter}" class="id flex-container temporary">
     <Picture
-      alt="Snymのメンバーの{name}の画像"
+      alt="{$_('member_icon_alt')}{name}"
       {imageTypes}
       sizes="(orientation: portrait) 15vw, 5vw"
       {sizeSet}
@@ -42,7 +43,7 @@
 {:else}
   <div class="id flex-container temporary">
     <Picture
-      alt="Snymのメンバーの{name}の画像"
+      alt="{$_('member_icon_alt')}{name}"
       {imageTypes}
       sizes="(max-width: 600px) 15vw, 5vw"
       {sizeSet}
